@@ -1,0 +1,50 @@
+BEGIN:VCALENDAR
+CALSCALE:GREGORIAN
+VERSION:2.0
+X-WR-CALNAME:PLGT23 Day 1 at Salaya
+METHOD:PUBLISH
+PRODID:-//Apple Inc.//macOS 13.4.1//EN
+BEGIN:VTIMEZONE
+TZID:Asia/Bangkok
+BEGIN:STANDARD
+TZOFFSETFROM:+1804
+DTSTART:19200331T235956
+TZNAME:GMT+7
+TZOFFSETTO:+0700
+RDATE:19200331T235956
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+TRANSP:OPAQUE
+DTEND;TZID=Asia/Bangkok:20230704T160000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS="999 Phutthamonthon Sai 
+ 4 Road, Sala Ya, Phutthamonthon, Nakhon Pathom 73170, Thailand";X-APPLE-
+ MAPKIT-HANDLE=CAES9wIIrk0Qz6en6tTjhrywARoSCZ/yvgSolitAEQAAkqTIFFlAIpYBCg
+ hUaGFpbGFuZBICVEgaDU5ha2hvbiBQYXRob20qDlBodXR0aGFtb250aG9uMg5QaHV0dGhhbW
+ 9udGhvbjoFNzMxNzBCB1NhbGEgWWFSGVBodXR0aGFtb250aG9uIFNhaSA0IFJvYWRaAzk5OW
+ IdOTk5IFBodXR0aGFtb250aG9uIFNhaSA0IFJvYWSKAQdTYWxhIFlhKg5GYWN1bHR5IG9mIE
+ lDVDIdOTk5IFBodXR0aGFtb250aG9uIFNhaSA0IFJvYWQyF1NhbGEgWWEsIFBodXR0aGFtb2
+ 50aG9uMhNOYWtob24gUGF0aG9tIDczMTcwMghUaGFpbGFuZDgvUAFaTwolCM+np+rU44a8sA
+ ESEgmf8r4EqJYrQBEAAJKkyBRZQBiuTZADAaIfJQjPp6fq1OOGvLABGhgKDkZhY3VsdHkgb2
+ YgSUNUEAAqAmVuQAA=;X-APPLE-RADIUS=142.0468988249843;X-TITLE=Faculty of I
+ CT:geo:13.794251,100.324746
+UID:0F98E330-F209-4BD4-AF53-F6CBFF9616F4
+DTSTAMP:20230627T131506Z
+LOCATION:Faculty of ICT\n999 Phutthamonthon Sai 4 Road\, Sala Ya\, Phutt
+ hamonthon\, Nakhon Pathom 73170\, Thailand
+DESCRIPTION:Play\, learn\, and grow together by Chittapanya team with ac
+ tivities designed specifically for ICT freshy in order to get to know ea
+ ch other. These activities are thoughtfully crafted to facilitate intera
+ ction and enable the freshies to get to know each other. By engaging in 
+ these activities\, the participants can not only have fun but also learn
+  from one another and grow both personally and professionally.
+URL;VALUE=URI:
+X-APPLE-CREATOR-IDENTITY:com.apple.mobilecal
+SEQUENCE:0
+SUMMARY:PLGT23 Day 1 at Salaya
+DTSTART;TZID=Asia/Bangkok:20230704T090000
+LAST-MODIFIED:20230627T131318Z
+CREATED:20230627T131318Z
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+END:VEVENT
+END:VCALENDAR

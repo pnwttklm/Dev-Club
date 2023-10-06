@@ -1,0 +1,1 @@
+export default function() {return(<meta httpEquiv="Refresh" content="0;URL=https://forms.gle/NZQvo6AWH7Dc3wRm7" />)}
