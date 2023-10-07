@@ -78,7 +78,7 @@ export default function WithSubnavigation() {
         <Flex className={` w-screen h-20   bg-[#FFFFFF]`}>
         {/* drop-shadow-md */}
           <Flex className="flex flex-1 justify-between">
-            <Link href="/" className="nav-items item-center"><Image width={165} height={165} src={`/${Logo()}`} className="drop-shadow-md" alt='logo-navbar'/></Link>
+            <Link href="/" className="nav-items item-center"><Image width={165} height={165} src={`/${Logo()}`} className="pl-6 pt-2" alt='logo-navbar'/></Link>
             <Flex className="hidden md:flex mr-4">
               <DesktopNav />
             </Flex>
