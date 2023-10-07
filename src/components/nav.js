@@ -40,14 +40,14 @@ import { motion } from "framer-motion";
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-const pathname = usePathname();
+
   
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
 
     function navColor() {
-      if (isInclude()) {
+      if (IsInclude()) {
         return 'white'
       }
       else {
@@ -56,7 +56,7 @@ export default function WithSubnavigation() {
     }
 
     function navColorContrast() {
-      if (isInclude()) {
+      if (IsInclude()) {
         return '[#1D4F91]'
       }
       else {
@@ -65,7 +65,7 @@ export default function WithSubnavigation() {
     }
     
     function Logo() {
-      if (isInclude()) {
+      if (IsInclude()) {
         return 'logo_k.svg'
       }
       else {
@@ -118,7 +118,7 @@ export default function WithSubnavigation() {
     const pathname = usePathname();
 
     function navColor() {
-      if (isInclude()) {
+      if (IsInclude()) {
         return '#000000'
       }
       else {
@@ -211,7 +211,7 @@ export default function WithSubnavigation() {
   const MobileNav = function() {
     const pathname = usePathname();
     function navColor() {
-      if (isInclude()) {
+      if (IsInclude()) {
         return 'white'
       }
       else {
@@ -231,7 +231,7 @@ export default function WithSubnavigation() {
     const pathname = usePathname();
 
     function navColorContrast() {
-      if (isInclude()) {
+      if (IsInclude()) {
         return 'black'
       }
       else {
@@ -317,8 +317,8 @@ const NAV_ITEMS= [
   }
 ];
 
-function isInclude() {
-  
+function IsInclude() {
+  const pathname = usePathname();
   if (pathname.includes('/guide-book')  || pathname.includes('/meet-our-team') || pathname.includes('/privacy-policy') || pathname.includes('/terms')) {
     return true
   }
