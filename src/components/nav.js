@@ -301,6 +301,11 @@ export default function WithSubnavigation() {
   
 const NAV_ITEMS= [
   {
+    label: 'Newsroom',
+    style: {...navStyle},
+    href: '/'
+  },
+  {
     label: 'Work',
     style: {...navStyle},
     href: '/'
