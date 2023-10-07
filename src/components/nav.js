@@ -308,12 +308,12 @@ const NAV_ITEMS= [
   {
     label: 'About',
     style: {...navStyle},
-    href: 'https://lifelong.mahidol.ac.th/gened-mu/'
+    href: '/'
   },
   {
     label: 'Team',
     style: {...navStyle},
-    href: 'https://lifelong.mahidol.ac.th/gened-mu/'
+    href: '/'
   }
 ];
 
