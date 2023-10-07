@@ -14,7 +14,7 @@ export default function q() {
             <div className='bg-black p-6' key={index}>
                 <Image src={qE.imgSrc} width={1000} height={1000} alt='banner' className='w-full'/>
                 <h1 className={`${qE.color} text-3xl text-center pt-6`}>{qE.name}</h1>
-                <h1 className='text-[#FFFFFF] text-xl text-center'>It's the turn of</h1>
+                <h1 className='text-[#FFFFFF] text-xl text-center'>It is the turn of</h1>
                 <h1 className={`${qE.color} text-[100px] text-center`}>{qE.num}</h1>
             </div>
         ))}
