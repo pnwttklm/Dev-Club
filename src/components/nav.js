@@ -39,6 +39,8 @@ import Image from 'next/image';
 import { motion } from "framer-motion";
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+
+const pathname = usePathname();
   
 
 export default function WithSubnavigation() {
@@ -316,7 +318,7 @@ const NAV_ITEMS= [
 ];
 
 function isInclude() {
-  const pathname = usePathname();
+  
   if (pathname.includes('/guide-book')  || pathname.includes('/meet-our-team') || pathname.includes('/privacy-policy') || pathname.includes('/terms')) {
     return true
   }
