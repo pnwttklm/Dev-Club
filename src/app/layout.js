@@ -8,19 +8,19 @@ import Footer from '../components/footer'
 // const sarabun = Sarabun({ subsets: ['thai', 'latin'], weight: '400', })
 
 export const metadata = {
-  title: 'Gen ED',
-  description: 'Resource for Gen ED Mahidol',
+  title: 'Dev Club',
+  description: 'Dev Club, ICT Mahidol',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <link rel="shortcut icon" href="/favicon.ico" />
-      <link rel="icon" href="/icon.svg" />
+      <link rel="shortcut icon" href="favicon.ico" />
+      <link rel="icon" href="icon.svg" />
       <link
       rel="apple-touch-icon"
-        href="/apple-icon.ico"
+        href="apple-icon.ico"
       />
       </head>
       <body className={sarabun.className}>
