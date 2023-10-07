@@ -1,4 +1,7 @@
 import Image from 'next/image';
+import{
+  Link
+}from '@chakra-ui/next-js'
 
 export default function Header() {
     return (
