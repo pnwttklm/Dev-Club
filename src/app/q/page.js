@@ -10,24 +10,25 @@ const { Client } = require('@notionhq/client');
 const database_token = 'secret_75OmxxYSJBIgPy37wh8Qm26MEIUqn9bvPHmTEpQWmCp'
 const notion = new Client({ auth: database_token });
 
-(async () => {
+// (async () => {
   const databaseId = '73c5819b4daf4017a4da2b7f7ac77387';
-  const response = await notion.databases.retrieve({ database_id: databaseId });
+  const response = notion.databases.retrieve({ database_id: databaseId });
   console.log(response);
-})();
+// })();
+const data = response.properties;
     
     return (
       <>
       <div className="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
         <SimpleGrid columns={[1, 1, 5]} spacingX='40px' spacingY='20px'>
-        {/* {response.map((qE, index) => (
+        {qElement.map((qE, index) => (
             <div className='bg-black p-6' key={index}>
                 <Image src={qE.imgSrc} width={1000} height={1000} alt='banner' className='w-full'/>
                 <h1 className={`${qE.color} text-3xl text-center pt-6`}>{qE.name}</h1>
                 <h1 className='text-[#FFFFFF] text-xl text-center'>It is the turn of</h1>
                 <h1 className={`${qE.color} text-[100px] text-center`}>{qE.num}</h1>
             </div>
-        ))} */}
+        ))}
         </SimpleGrid>
       </div>
       </>
