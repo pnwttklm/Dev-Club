@@ -11,7 +11,7 @@ export default function Header() {
       <div class="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
         <SimpleGrid columns={[1, 1, 2]} spacingX='40px' spacingY='20px'>
         <div>
-                <Image src='header.svg' width={1000} height={1000} className='w-full'/>
+                <Image src='head_banner.svg' width={1000} height={1000} alt='banner' className='w-full'/>
           </div>
         <div>
                 <h1 className="text-6xl">Did someone tell you that your knowledge cannot be implemented in the real-world problems?</h1>
