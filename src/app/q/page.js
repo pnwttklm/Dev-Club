@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Box, Link, SimpleGrid } from '@chakra-ui/react';
 import { Client } from "@notionhq/client";
-import { useEffect, useState } from 'react'; // Import the useState and useEffect hooks
+import React, { useState, useEffect } from 'react'; // Import the useState and useEffect hooks
 
 // const { Client } = require("@notionhq/client")
 
