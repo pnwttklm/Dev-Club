@@ -14,7 +14,7 @@ export default function Header() {
                 <Link href="https://forms.gle/WEeVVa5fKjRgTQ2dA"><button  className="bg-[#000000] text-white text-2xl hover:text-black hover:bg-[#FFFFFF] border-2 border-black mr-6 hover:italic py-4 px-16  mt-6">Submit Your Application</button></Link>
             </div>
             <div>
-                <Image src='mahidol.svg' width={1000} height={1000} className='w-full'/>
+                <Image src='header.svg' width={1000} height={1000} className='w-full'/>
             </div>
       </div>
       </>
