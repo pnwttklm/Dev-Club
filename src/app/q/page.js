@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchNotionData } from "../utils/notion";
 
 
-export default function q() {
+export default function Q() {
 
     const [data, setData] = useState([]);
 
