@@ -16,7 +16,7 @@ const questionCard = ({question, answer, allowFile, fileRoot, filename, fileName
             {({ isExpanded }) => (
                 <>
                     <h2>
-                        <AccordionButton className='rounded-3xl'>
+                        <AccordionButton className=''>
                         <div className='flex w-full justify-between items-center pb-5 pt-5'>
                                 <h1 className='font-medium text-left
                                 text-base

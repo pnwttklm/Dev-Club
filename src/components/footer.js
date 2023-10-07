@@ -53,7 +53,9 @@ export default function footer() {
             <h1 >Dev Club<br/>
               Faculty of Information and Communication Technology, Mahidol University<br/>
             999 Phuttamonthon 4 Road, <br/>Salaya , Nakhon Pathom 73170<br/> THAILAND<br/>
-Version 0.1.0</h1>
+</h1>
+<h1 className="text-right">
+  Copyright © {year}. Dev Club,<br/>in association with Faculty of Information and Communication Technology, Mahidol University. All rights reserved.<br/>Version 0.1.0</h1>
           </div>
         </div>
         </div>
