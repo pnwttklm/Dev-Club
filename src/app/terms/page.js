@@ -11,12 +11,12 @@ import {
 
 
 
-export default function() {
+export default function terms() {
   
   return(
     <>
     <title>Legal - Terms of Use</title>
-    <div className="bg-white">
+    {/* <div className="bg-white">
     
       <div>
       <div id='ENG' className="text-black bg-white p-12 md:p-32 md:mx-64 text-2xl">
@@ -236,7 +236,7 @@ export default function() {
 
       </div>
       </div>
-      </div>
+      </div> */}
       <p>Last updated July 25, 2023. 10:10 AM Indochina Time.</p>
     </>
     )}

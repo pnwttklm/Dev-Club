@@ -28,7 +28,7 @@ import {
 } from "react-icons/bs";
 import React, { useState } from "react";
 
-export default function () {
+export default function footer() {
   const year = new Date().getFullYear();
   return (
     <div className="mt-32">

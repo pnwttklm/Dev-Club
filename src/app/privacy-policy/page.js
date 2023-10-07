@@ -10,7 +10,7 @@ import {
 
 
 
-export default function() {
+export default function privacy() {
   
   return(
     <>
