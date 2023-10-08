@@ -23,7 +23,7 @@ const data = response.properties;
         <SimpleGrid columns={[1, 1, 5]} spacingX='40px' spacingY='20px'>
         {qElement.map((qE, index) => (
             <div className='bg-black p-6' key={index}>
-                <Image src={qE.imgSrc} width={200} height={200} alt='banner' className='w-full'/>
+                <Image src={qE.imgSrc} width={1000} height={1000} alt='banner' className='h-1/3'/>
                 <h1 className={`${qE.color} text-3xl text-center pt-6`}>{qE.name}</h1>
                 <h1 className='text-[#FFFFFF] text-xl text-center'>It is the turn of</h1>
                 <h1 className={`${qE.color} text-[100px] text-center`}>{qE.num}</h1>
@@ -39,20 +39,20 @@ const data = response.properties;
   const qElement = [
     {
       name: 'FRONTEND WEB',
-      imgSrc: 'head_banner.svg',
+      imgSrc: 'fwLogo.svg',
       color: 'text-[#00FF66]',
       num: 'FW06',
     },
     {
         name: 'FRONTEND APP',
-        imgSrc: 'head_banner.svg',
-        color: 'text-[#2400FF]',
+        imgSrc: 'faLogo.svg',
+        color: 'text-[#006AFF]',
         num: 'FA03',
       },
       {
         name: 'BACKEND',
-        imgSrc: 'head_banner.svg',
-        color: 'text-[#FF0000]',
+        imgSrc: 'bnLogo.svg',
+        color: 'text-[#FF5656]',
         num: 'BN09',
       },
       {
@@ -62,7 +62,7 @@ const data = response.properties;
         num: 'DA10',
       },
       {
-        name: 'QA',
+        name: 'Quality Assurance',
         imgSrc: 'qaLogo.svg',
         color: 'text-[#FFC700]',
         num: 'QA32',
