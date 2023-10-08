@@ -23,7 +23,7 @@ const data = response.properties;
         <SimpleGrid columns={[1, 1, 5]} spacingX='40px' spacingY='20px'>
         {qElement.map((qE, index) => (
             <div className='bg-black p-6' key={index}>
-                <Image src={qE.imgSrc} width={1000} height={1000} alt='banner' className='w-full'/>
+                <Image src={qE.imgSrc} width={200} height={200} alt='banner' className='w-full'/>
                 <h1 className={`${qE.color} text-3xl text-center pt-6`}>{qE.name}</h1>
                 <h1 className='text-[#FFFFFF] text-xl text-center'>It is the turn of</h1>
                 <h1 className={`${qE.color} text-[100px] text-center`}>{qE.num}</h1>
@@ -52,19 +52,19 @@ const data = response.properties;
       {
         name: 'BACKEND',
         imgSrc: 'head_banner.svg',
-        color: 'text-[#FAFF00]',
+        color: 'text-[#FF0000]',
         num: 'BN09',
       },
       {
         name: 'DESIGN & ART',
-        imgSrc: 'head_banner.svg',
+        imgSrc: 'daLogo.svg',
         color: 'text-[#FA00FF]',
         num: 'DA10',
       },
       {
         name: 'QA',
-        imgSrc: 'head_banner.svg',
-        color: 'text-[#FF0000]',
+        imgSrc: 'qaLogo.svg',
+        color: 'text-[#FFC700]',
         num: 'QA32',
       },
 ]
