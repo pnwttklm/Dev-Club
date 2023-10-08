@@ -1,3 +1,4 @@
+'use server'
 import { getPageContent, getPageBySlug, notionClient } from "../../utils/notion";
 import { NotionRenderer } from "@notion-render/client";
 import { notFound } from "next/navigation";
