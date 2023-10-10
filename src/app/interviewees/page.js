@@ -6,7 +6,7 @@ import {
   } from '@chakra-ui/react'
 
   import React, { useState } from "react";
-export default function check() {
+export default function Check() {
     const [value, setValue] = React.useState('')
     return (
     <>
