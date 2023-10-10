@@ -43,9 +43,9 @@ export default function footer() {
             <Image height={100} width={100} className=" w-[256px]" src='/logo_w.svg' alt="Club Logo"/>
             
             <div className="flex flex-row gap-6">
-              <a href='/privacy-policy' className='font-semibold text-[#F5F5F7] hover:text-[#AD841F]'>Privacy Policy</a>
-              <a href='/terms' className='font-semibold text-[#F5F5F7] hover:text-[#AD841F]'>Terms of Use</a>
-              <a href='/acknowledgement' className='font-semibold text-[#F5F5F7] hover:text-[#AD841F]'>Acknowledgement</a>
+              <a href='/privacy-policy' className=' text-white hover:italic hover:underline'>Privacy Policy</a>
+              <a href='/terms' className=' text-white hover:italic hover:underline'>Terms of Use</a>
+              <a href='/acknowledgement' className=' text-white hover:italic hover:underline '>Acknowledgement</a>
             </div>
             
           </div>

@@ -32,7 +32,7 @@ export default function Home() {
       <div id='why-us'>
         
       <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
-        <h1 className=' font-bold
+        <h1 className='
         text-2xl
         md:text-4xl'>Why Us?</h1>
           <WhyUs/>
@@ -43,7 +43,7 @@ export default function Home() {
       <div id='teams'>
         
       <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
-        <h1 className=' font-bold
+        <h1 className='
         text-2xl
         md:text-4xl'>Teams</h1>
           <Teams/>
@@ -54,7 +54,7 @@ export default function Home() {
       <div id='faqs'>
         
       <div className='flex flex-col pt-16 p-12 bg-white h-full w-full items-center'>
-        <h1 className=' font-bold
+        <h1 className='
         text-2xl
         md:text-4xl'>QUESTIONS...?</h1>
         <Accordion allowToggle className='pt-16 
