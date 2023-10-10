@@ -12,7 +12,7 @@ export default function teams() {
         {qElement.map((qE, index) => (
             <div className='bg-black p-6' key={index}>
                 <Image src={qE.imgSrc} width={1000} height={1000} alt='banner' className='h-[200px]'/>
-                <h1 className={`${qE.color} text-3xl text-left pt-6 pb-3`}>{qE.name}</h1>
+                <h1 className={`${qE.color} text-white text-3xl text-left mt-6 mb-3`}>{qE.name}</h1>
                 <h1 className={`text-white text-xl text-left`}>{qE.des}</h1>
                 <h1 className={`text-white text-xl text-left pt-3`}>Tools: {qE.tools}</h1>
             </div>
@@ -28,36 +28,36 @@ export default function teams() {
     {
       name: 'FRONTEND WEB',
       imgSrc: 'fwLogo.svg',
-      color: 'text-[#00FF66]',
-      des: 'Making the gorgeous websites, akfjekdfkdfdjfo[jdjpskjspdkjdjks;j;kjfjfd;ksjf;fk',
+      color: 'bg-[#00FF66]',
+      des: 'Elevate Your Design Game. Dive into the Future of Web Development. Stay Ahead with Stunning and Innovative Designs.',
       tools: 'React, Next.js',
     },
     {
         name: 'FRONTEND APP',
         imgSrc: 'faLogo.svg',
-        color: 'text-[#006AFF]',
-        des: 'Push mobile application beyond the edge djfdfjkdddjkdjdkgjkdjgkdjdjdlldkfdfldkdlkfldkfkdllkfdlkl',
+        color: 'bg-[#006AFF]',
+        des: 'Explore the Future of Mobile Apps! Discover the Next Level of Innovation and Convenience. Join Us in Pushing Boundaries.',
         tools: 'Dart, Flutter',
       },
       {
         name: 'BACKEND',
         imgSrc: 'bnLogo.svg',
-        color: 'text-[#FF5656]',
-        des: 'Supporting and structuring all the project  djfkdjkdjjdksjldjgklddhkldskslkjgdslkdsjkljdlgjfskdlghdslkfmwdn',
+        color: 'bg-[#FF5656]',
+        des: 'The Backbone Behind Every Project. Managing data, securing information, and delivering smooth functionality, it\'s the invisible force that keeps everything running seamlessly.',
         tools: 'JS, TS, Express',
       },
       {
         name: 'DESIGN & ART',
         imgSrc: 'daLogo.svg',
-        color: 'text-[#FA00FF]',
-        des: 'Let\'s your heart lead you to the land of beautiful and peaceful of art and design dkfjkdjfpsjgdikldjpsmfdjcpigjsdgpdgj',
+        color: 'bg-[#FA00FF]',
+        des: 'Follow Your Heart to a World of Beauty and Tranquility. Explore Inspiring Creations and Express Your Inner Artist.',
         tools: 'Adobe Illustrator, Figma',
       },
       {
         name: 'Quality Assurance',
         imgSrc: 'qaLogo.svg',
-        color: 'text-[#FFC700]',
-        des: 'Making sure that every piece of the project runs as expected idjfipfjifjjffjpdjfdpjfdojopjpso',
+        color: 'bg-[#FFC700]',
+        des: 'Ensuring Flawless Execution. We meticulously test and fine-tune every aspect of every project to guarantee it performs perfectly.',
         tools: '-',
       },
 ]

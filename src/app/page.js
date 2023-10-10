@@ -15,21 +15,13 @@ import {
 import Image from "next/image"
 import { BsLink } from 'react-icons/bs'
 
-// const Individual_nav = dynamic(() => import('../components/individual_nav'))
-// const GallerySlider2 = dynamic(() => import('../components/overview_components/galleryslider2'))
-// const MsgSlider2 = dynamic(() => import('../components/overview_components/msgslider2'))
-// const Allcards1 = dynamic(() => import('../components/overview_components/allcards1'))
-// const Footer = dynamic(() => import('../components/footer'))
-// const Timeline = dynamic(() => import( '../components/overview_components/timeline_main'))
-// const E_card = dynamic(() => import('../components/overview_components/event_cards'))
-// const Topelement = dynamic(() => import('../components/overview_components/top'))
 
-// const Question = dynamic(() => import('../components/questionsection'))
 const QCard = dynamic(() => import('../components/questionCard'))
 
 
 const Header = dynamic(() => import('../components/index_c/header'))
 const Teams = dynamic(() => import('../components/index_c/teams'))
+const WhyUs = dynamic(() => import('../components/index_c/whyUs'))
 
 export default function Home() {
   return (
@@ -37,9 +29,20 @@ export default function Home() {
       <Header/>
 
       <div className='h-6'/>
-      <div id='faqs'>
+      <div id='why-us'>
         
-      <div className='flex flex-col pt-16 bg-white h-full w-full items-center'>
+      <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
+        <h1 className=' font-bold
+        text-2xl
+        md:text-4xl'>Why Us?</h1>
+          <WhyUs/>
+        </div>
+      </div>
+
+      <div className='h-6'/>
+      <div id='teams'>
+        
+      <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
         <h1 className=' font-bold
         text-2xl
         md:text-4xl'>Teams</h1>
@@ -55,7 +58,7 @@ export default function Home() {
         text-2xl
         md:text-4xl'>QUESTIONS...?</h1>
         <Accordion allowToggle className='pt-16 
-        md:w-full
+        w-full
         xl:w-7/12'>
 
         {questionElement.map((cardE, index) => (
@@ -76,7 +79,6 @@ export default function Home() {
 
           
         </Accordion>
-         {/* <Question/> */}
 
       </div>
 
