@@ -43,9 +43,9 @@ export default function footer() {
             <Image height={100} width={100} className=" w-[256px]" src='/logo_w.svg' alt="Club Logo"/>
             
             <div className="flex flex-row gap-6">
-              <a href='/privacy-policy' className=' text-white hover:italic hover:underline'>Privacy Policy</a>
-              <a href='/terms' className=' text-white hover:italic hover:underline'>Terms of Use</a>
-              <a href='/acknowledgement' className=' text-white hover:italic hover:underline '>Acknowledgement</a>
+            {link.map((e, index) => (
+              <a href={e.link} className=' text-white hover:italic hover:underline' key={index}>{e.name}</a>
+            ))}
             </div>
             
           </div>
@@ -61,3 +61,18 @@ export default function footer() {
         </div>
   );
 }
+
+const link = [
+  {
+    name: 'Privacy Policy',
+    link: '/privacy-policy'
+  },
+  {
+    name: 'Terms of Use',
+    link: '/terms'
+  },
+  {
+    name: 'Acknowledgement',
+    link: '/acknowledgement'
+  },
+]
