@@ -85,9 +85,9 @@ export default function WithSubnavigation() {
           </Flex>
 
           <div className='flex items-center'>
-            <Link href="https://forms.gle/WEeVVa5fKjRgTQ2dA" className="nav-items bg-[#000000] text-white  hover:text-black hover:bg-[#FFFFFF] border-2 border-black mr-6 hover:italic">
+            {/* <Link href="https://forms.gle/WEeVVa5fKjRgTQ2dA" className="nav-items bg-[#000000] text-white  hover:text-black hover:bg-[#FFFFFF] border-2 border-black mr-6 hover:italic">
                 <h1 className='px-5 py-2'>Join Us</h1>
-            </Link>
+            </Link> */}
 
             <Flex
               className='flex md:hidden items-center mr-2'
