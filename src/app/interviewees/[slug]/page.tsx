@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import {
+  Button,
+  Link,
   SimpleGrid
 } from '@chakra-ui/react'
 import Image from 'next/image';
@@ -23,13 +25,18 @@ export default function Page({ params }: { params: { slug: string } }) {
         <div className="grid grid-flow-col auto-cols-ma gap-100 lg:px-96 p-6">
         <SimpleGrid columns={[1, 1, 3]} spacingX='40px' spacingY='20px'>
         {foundInterview.type.map((qE, index) => (
-            <div className='bg-black pt-6 px-6' key={index}>
+            <div className='bg-black pt-6 px-6 text-white' key={index}>
               <Image src={`${eligibleTeams[index]?.imgSrc}`} width={1000} height={1000} alt='banner' className='h-1/3'/>
-                <h1 className={`${eligibleTeams[index]?.color} text-3xl text-center pt-6`}>{eligibleTeams[index]?.name}</h1>
-                <h1 className='text-[#FFFFFF] text-xl text-center'>Interview ID:</h1>
-                <h1 className={`${eligibleTeams[index]?.color} text-[100px] text-center`}>{qE.typeID}{qE.interID}</h1>
-                <h1 className='text-[#FFFFFF] text-xl text-left'>Date: {qE.date.toString()}</h1>
-                <h1 className='text-[#FFFFFF] text-xl text-left'>Round: {qE.time}</h1>
+                <h1 className={`${eligibleTeams[index]?.color} text-3xl text-center pt-6 `}>{eligibleTeams[index]?.name}</h1>
+                <h1 className="text-xl pt-6">ID: {element.ID}</h1>
+                <h1 className="text-xl pb-12">Name: {element.name}</h1>
+              <Link href={eligibleTeams[index]?.form} className=" px-2 py-3 bg-white text-black text-xl border-2 border-white hover:border-white hover:bg-black hover:text-white hover:italic">
+                Confirm to Interview
+              </Link>
+                {/* <h1 className='text-[#FFFFFF] text-xl text-center'>Interview ID:</h1>
+                <h1 className={`${eligibleTeams[index]?.color} text-[100px] text-center`}>{qE.typeID}{qE.interID}</h1> */}
+                {/* <h1 className='text-[#FFFFFF] text-xl text-left'>Date: {qE.date.toString()}</h1>
+                <h1 className='text-[#FFFFFF] text-xl text-left'>Round: {qE.time}</h1> */}
             </div>
         ))}
       </SimpleGrid>
@@ -57,47 +64,468 @@ function NotFound() {
 
   const interview = [
     {
-      ID: 6588048,
-      name: 'Poonyawatt Klumnaim',
+      ID: '6488a',
+      name: 'Thanapat Nonpassopon',
       type: [
         {
-          typeID: 'FW',
-          interID: '01',
-          date: 'October 30, 2023',
-          time: '10.30'
+          typeID: 'DA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
         },
         {
-          typeID: 'DA',
-          interID: '01',
-          date: 'October 30, 2023',
-          time: '11.30'
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
         },
         {
           typeID: 'QA',
-          interID: '01',
-          date: 'October 30, 2023',
-          time: '12.30'
-        }
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
       ]
-    },
+    }, 
     {
-      ID: 6588050,
-      name: 'Poonyawatt Klumnaim',
+      ID: '6588008',
+      name: 'Jakguy Boriboon ',
+      type: [
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6488b',
+      name: 'Prachnachai Meakpaiboonwattana',
       type: [
         {
           typeID: 'FW',
-          interID: '02',
-          date: 'October 30, 2023',
-          time: '10.30'
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
         },
         {
           typeID: 'DA',
-          interID: '02',
-          date: 'October 30, 2023',
-          time: '10.30'
-        }
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
       ]
-    }
+    }, 
+    {
+      ID: '6688029',
+      name: 'Phurinat Intawichian ',
+      type: [
+        {
+          typeID: 'DA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6688052',
+      name: 'Pannawit Krutnak',
+      type: [
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6688115',
+      name: 'Ponlapat Subsaenudom',
+      type: [
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'DA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6488079',
+      name: 'Burit Sihabut',
+      type: [
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'DA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6488018',
+      name: 'Ramita Deeprom',
+      type: [
+        {
+          typeID: 'DA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6688026',
+      name: 'Paulwit Fakfaiphol',
+      type: [
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6688002',
+      name: 'Nuttawat Angsakul',
+      type: [
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6588018',
+      name: 'Kritin Chitchobtham',
+      type: [
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6488217',
+      name: 'Pattaradnai Kaeodumkoeng',
+      type: [
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6588013',
+      name: 'Praewa Chan-on',
+      type: [
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6488089',
+      name: 'Pattaravit Suksri',
+      type: [
+        {
+          typeID: 'DA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6588106',
+      name: 'Arbhichar Thanajirawat',
+      type: [
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6588067',
+      name: 'Harith Phalangpatanakij ',
+      type: [
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6588028',
+      name: 'Jinjutha Jindapunpaisan',
+      type: [
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6588204',
+      name: 'Chayanid Termphaiboon',
+      type: [
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6588022',
+      name: 'Sakhunich Iamcharas',
+      type: [
+        {
+          typeID: 'DA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    {
+      ID: '6688042',
+      name: 'Punnawit Kanogpornwanich',
+      type: [
+        {
+          typeID: 'BN',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'FW',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+        {
+          typeID: 'QA',
+          interID: '00',
+          date: 'October 31, 2023',
+          time: '00.00'
+        },
+      ]
+    }, 
+    
   ]
 
   const teams = [
@@ -106,39 +534,34 @@ function NotFound() {
       name: 'FRONTEND WEB',
       imgSrc: '/fwLogo.svg',
       color: 'text-[#00FF66]',
-      des: 'Elevate Your Design Game. Dive into the Future of Web Development. Stay Ahead with Stunning and Innovative Designs.',
-      tools: 'React, Next.js',
+      form: 'https://google.com',
     },
     {
         ID: 'FA',
         name: 'FRONTEND APP',
         imgSrc: '/faLogo.svg',
         color: 'text-[#006AFF]',
-        des: 'Explore the Future of Mobile Apps! Discover the Next Level of Innovation and Convenience. Join Us in Pushing Boundaries.',
-        tools: 'Dart, Flutter',
+        form: '',
       },
       {
         ID: 'BN',
         name: 'BACKEND',
         imgSrc: '/bnLogo.svg',
         color: 'text-[#FF5656]',
-        des: 'The Backbone Behind Every Project. Managing data, securing information, and delivering smooth functionality, it\'s the invisible force that keeps everything running seamlessly.',
-        tools: 'JS, TS, Express',
+        form: '',
       },
       {
         ID: 'DA',
         name: 'DESIGN & ART',
         imgSrc: '/daLogo.svg',
         color: 'text-[#FA00FF]',
-        des: 'Follow Your Heart to a World of Beauty and Tranquility. Explore Inspiring Creations and Express Your Inner Artist.',
-        tools: 'Adobe Illustrator, Figma',
+        form: '',
       },
       {
         ID: 'QA',
         name: 'Quality Assurance',
         imgSrc: '/qaLogo.svg',
         color: 'text-[#FFC700]',
-        des: 'Ensuring Flawless Execution. We meticulously test and fine-tune every aspect of every project to guarantee it performs perfectly.',
-        tools: '-',
+        form: '',
       },
 ]
