@@ -14,7 +14,7 @@ export default function Check() {
     <>
     <div class="flex flex-col h-screen items-center justify-center">
 
-    <h1 className={`text-black text-4xl text-center`}>Check your Interview Eligiblility</h1>
+    <h1 className={`text-black text-4xl text-center`}>Check Your Interview Eligiblility</h1>
     <NumberInput className='py-12' min={6387001} max={6688299} onChange={(valueString) => setValue(valueString)}>
         <NumberInputField placeholder='Please Enter Your ID'/>
     </NumberInput>

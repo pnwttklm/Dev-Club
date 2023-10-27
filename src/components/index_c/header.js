@@ -17,7 +17,7 @@ export default function Header() {
                 <h1 className="text-6xl">Did someone tell you that your knowledge cannot be implemented in the real-world problems?</h1>
                 <h1 className="italic text-6xl">They were wrong!</h1>
                 <p className='pt-12 text-xl'>At Dev Club ICT Mahidol, we belive that every knowledge can be implemented in the real-world problems. We are a sandbox for everyone to learn, to try, and to experience the real-world problems of working in software developement field, not only developers we also welcome other important roles for software developement such as 📋 <a className='italic'> Quality Assurance</a>  and 🎨 <a className='italic'>UX/UI Designer and Art</a>. Cannot wait to see you here. </p>
-                {/* <Link href="https://forms.gle/WEeVVa5fKjRgTQ2dA"><button  className="bg-[#000000] text-white text-2xl hover:text-black hover:bg-[#FFFFFF] border-2 border-black mr-6 hover:italic py-4 px-16  mt-6">Submit Your Application</button></Link> */}
+                <Link href="/interviewees"><button  className="bg-[#000000] text-white text-2xl hover:text-black hover:bg-[#FFFFFF] border-2 border-black mr-6 hover:italic py-4 px-16  mt-6">Check Eligiblility</button></Link>
             </div>
           
         </SimpleGrid>
