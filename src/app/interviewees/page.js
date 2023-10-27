@@ -5,18 +5,20 @@ import {
     NumberInputField,
   } from '@chakra-ui/react'
 
-  import React, { useState } from "react";
+  // import React, { useState } from "react";
+  import React, { useRef } from 'react';
 export default function Check() {
     const [value, setValue] = React.useState('')
+    
     return (
     <>
-    <div class="flex h-screen items-center justify-center">
+    <div class="flex flex-col h-screen items-center justify-center">
 
-    <h1 className={`text-black text-4xl text-center`}>Result of First Round Selection</h1>
-    <NumberInput min={6387001} max={6688299} onChange={(valueString) => setValue(valueString)}>
-        <NumberInputField placeholder='Please Enter Your Student ID'/>
+    <h1 className={`text-black text-4xl text-center`}>Check your Interview Eligiblility</h1>
+    <NumberInput className='py-12' min={6387001} max={6688299} onChange={(valueString) => setValue(valueString)}>
+        <NumberInputField placeholder='Please Enter Your ID'/>
     </NumberInput>
-    <Link href={`/interviewees/${value}`}>Click here</Link>
+    <Link href={`/interviewees/${value}`}  className='bg-black text-white px-6 py-3 border-2 border-black hover:bg-white hover:text-black hover:italic'>SEE YOUR FATE</Link>
     </div>
     </>
     )
