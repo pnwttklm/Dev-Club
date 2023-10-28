@@ -95,7 +95,7 @@ const questionElement = [
     question: 'What is this club',
     answer: 
     <div>
-      <p className="pb-12">This club is for those who want to learn about working in developer field, not only coding but also Design, art, and QA. NOW, we are open for applications.</p>
+      <p className="pb-12">This club is for those who want to learn about working in developer field, not only coding but also Design, art, and QA. </p>
       {/* <a href='https://forms.gle/WEeVVa5fKjRgTQ2dA' className="w-fit rounded-full text-md font-medium hover:text-[#F5F5F7] hover:bg-[#1D1D1F] bg-[#F5F5F7] px-4 p-2" >
       <Icon className="mr-1" as={BsLink} />
         Apply Now

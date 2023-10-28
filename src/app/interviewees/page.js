@@ -16,7 +16,7 @@ export default function Check() {
 
     <h1 className={`text-black text-4xl text-center`}>Check Your Interview Eligiblility</h1>
     <NumberInput className='py-12' min={6387001} max={6688299} onChange={(valueString) => setValue(valueString)}>
-        <NumberInputField placeholder='Please Enter Your ID'/>
+        <NumberInputField className='rounded-none' placeholder='Please Enter Your ID'/>
     </NumberInput>
     <Link href={`/interviewees/${value}`}  className='bg-black text-white px-6 py-3 border-2 border-black hover:bg-white hover:text-black hover:italic'>SEE YOUR FATE</Link>
     </div>
