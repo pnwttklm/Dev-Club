@@ -128,7 +128,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       </div>
       </Center>
       <br/>
-      <p className="text-black px-2 text-2xl pb-6 text-center">Next, you have to join our first-met meeting and our Microsoft Teams...</p>
+      <p className="text-black px-2 text-2xl py-12 pb-6 text-center">Next, you have to join our first-met meeting and our Microsoft Teams...</p>
       <Center>
       <Link href='https://docs.google.com/spreadsheets/d/1NAwaHiJMxgqxsx0wxzHXXK-ACH3k96t0zsUZFkX3tGU/edit?usp=sharing' className=" px-4 py-3 bg-black text-white text-xl border-2 border-black hover:bg-white hover:text-black hover:italic">
                 Schedule for first-met meeting
