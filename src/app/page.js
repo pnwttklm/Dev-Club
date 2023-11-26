@@ -20,6 +20,7 @@ const QCard = dynamic(() => import('../components/questionCard'))
 
 
 const Header = dynamic(() => import('../components/index_c/header'))
+const Location = dynamic(() => import('../components/index_c/location'))
 const Teams = dynamic(() => import('../components/index_c/teams'))
 const WhyUs = dynamic(() => import('../components/index_c/whyUs'))
 
@@ -27,6 +28,17 @@ export default function Home() {
   return (
     <>
       <Header/>
+
+      <div className='h-6'/>
+      <div id='location'>
+        
+      <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
+        <h1 className='
+        text-2xl
+        md:text-4xl'>Location</h1>
+          <Location/>
+        </div>
+      </div>
 
       <div className='h-6'/>
       <div id='why-us'>
