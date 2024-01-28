@@ -18,7 +18,6 @@ import { BsLink } from 'react-icons/bs'
 
 const QCard = dynamic(() => import('../components/questionCard'))
 
-
 const Header = dynamic(() => import('../components/index_c/header'))
 const Location = dynamic(() => import('../components/index_c/location'))
 const Teams = dynamic(() => import('../components/index_c/teams'))

@@ -22,3 +22,33 @@ const array = [
         id: '059405940'
     },
 ]
+const user = [
+    {
+        name: 'Hedy Lamarr',
+        imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+        typeNo: 1
+    },
+    {
+        name: 'oeop rerl',
+        imageUrl: '',
+        typeNo: 1
+    },
+]
+
+const typeCus = [
+    {
+        type: 0,
+        name: 'Good User',
+        pricing: 500
+    },
+    {
+        type: 1,
+        name: 'Average User',
+        pricing: 1000
+    },
+    {
+        type: 2,
+        name: 'Bad User',
+        pricing: 1500
+    },
+]

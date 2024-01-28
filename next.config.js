@@ -5,7 +5,7 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['firebasestorage.googleapis.com'],
+    domains: ['firebasestorage.googleapis.com', 'promptpay.io'],
   },
 future: {
     serverComponents: true, // Enable Server Actions
