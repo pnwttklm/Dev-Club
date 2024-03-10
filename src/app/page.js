@@ -22,6 +22,7 @@ const Header = dynamic(() => import('../components/index_c/header'))
 const Location = dynamic(() => import('../components/index_c/location'))
 const Teams = dynamic(() => import('../components/index_c/teams'))
 const WhyUs = dynamic(() => import('../components/index_c/whyUs'))
+const Tiers = dynamic(() => import('../components/index_c/tiers'))
 
 export default function Home() {
   return (
@@ -59,6 +60,13 @@ export default function Home() {
         md:text-4xl'>Teams</h1>
           <Teams/>
         </div>
+      </div>
+
+      <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
+        <h1 className='
+        text-2xl
+        md:text-4xl'>Tiers</h1>
+          <Tiers/>
       </div>
 
       <div className='h-6'/>
