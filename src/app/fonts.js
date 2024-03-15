@@ -1,14 +1,9 @@
 import { 
-  Instrument_Serif,
+  JetBrains_Mono,
 } from 'next/font/google';
 
-// export const sarabun = Sarabun({
-//   weight: ['100','200','300','400','500','600','700', '800'],
-//   subsets: ['thai', 'latin'],
-//   display: 'swap'
-// });
 
-export const sarabun = Instrument_Serif({
+export const sarabun = JetBrains_Mono({
   weight: ['400'],
   subsets: ['latin', 'latin-ext'],
   display: 'swap',
