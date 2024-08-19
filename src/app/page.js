@@ -62,12 +62,12 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
+      {/* <div className='flex flex-col pt-6 bg-white h-full w-full items-center'>
         <h1 className='
         text-2xl
         md:text-4xl'>Tiers</h1>
           <Tiers/>
-      </div>
+      </div> */}
 
       <div className='h-6'/>
       <div id='faqs'>

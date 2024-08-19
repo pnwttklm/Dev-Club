@@ -1,5 +1,5 @@
 export default function FW() {
     return (
-        <meta http-equiv="refresh" content="0;url='https://pnwttklm.notion.site/FrontEnd-Website-Training-Session-892c2c49414c4c088b8edfc39ac15760?pvs=4'"></meta>
+        <meta http-equiv="refresh" content="0;url='https://muict-dev-club.notion.site/Frontend-Web-Training-Session-2406a576ea8e4cfc9329a815e9b332a8?pvs=4'"></meta>
     )
 }
