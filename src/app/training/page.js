@@ -31,14 +31,14 @@ export default function Training() {
 const teams=[
     {
         name: 'Frontend Website',
-        link: '/fw',
+        link: '/web',
         inst: 'Poonyawatt Klumnaim',
         imgSrc: 'fwLogo.svg',
         color: ''
     },
     {
         name: 'Frontend Mobile',
-        link: '/fa',
+        link: '/mobile',
         inst: 'Thanachot Onlamoon',
         imgSrc: 'faLogo.svg',
         color: ''
