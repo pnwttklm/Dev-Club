@@ -1,11 +1,9 @@
 import './globals.css'
-import { sarabun } from './fonts'
-import localFont from 'next/font/local'
 import { Providers } from "./providers";
 import Nav from '../components/nav'
 import Footer from '../components/footer'
-
-// const sarabun = Sarabun({ subsets: ['thai', 'latin'], weight: '400', })
+import { Poppins } from 'next/font/google';
+const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
 export const metadata = {
   title: 'Dev Club',
@@ -23,7 +21,7 @@ export default function RootLayout({ children }) {
         href="apple-icon.ico"
       />
       </head>
-      <body className={sarabun.className}>
+      <body className={poppins.className}>
  	      <Providers>
           <Nav/>
           {children}

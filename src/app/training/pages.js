@@ -13,7 +13,7 @@ export default function Training() {
     <div className="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
         <SimpleGrid columns={[1, 1, 4]} spacingX='20px' spacingY='20px'>
         {teams.map((qE, index) => (
-            <div className='border border-black border-2 p-6' key={index}>
+            <div className='border-black border-2 p-6' key={index}>
                 <div className="bg-black p-3">
                     <Image src={qE.imgSrc} width={1000} height={1000} alt='banner' className='h-[200px]'/>
                 </div>
