@@ -187,10 +187,23 @@ export default function HomePage() {
 
   function Error() {
     return (
-      <>
-        No Application Found for Student ID: {id}
-        <button onClick={() => setPage(0)}>Try Again</button>
-      </>
+      <div className="flex flex-col items-center justify-center gap-4 p-6 bg-gray-100 rounded-lg shadow-md">
+        <DotLottieReact
+          src="circle.lottie"
+          loop
+          autoplay
+          className="w-8/12 sm:w-6/12 mb-6"
+        />
+        <p className="text-lg font-semibold text-red-600">
+          No Application Found for Student ID: <span className="font-bold">{id}</span>
+        </p>
+        <button
+          onClick={() => setPage(0)}
+          className="px-4 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+        >
+          Try Again
+        </button>
+      </div>
     );
   }
   return (
