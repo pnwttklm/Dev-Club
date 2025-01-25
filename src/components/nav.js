@@ -91,8 +91,8 @@ export default function WithSubnavigation() {
             href="/recruit"
             className="px-8 py-4 flex flex-row items-center gap-3 nav-items bg-[#001C26] text-white  hover:text-black hover:bg-white hover:border-2 hover:border-black mr-6 hover:italic"
           >
-            <BsAirplaneEnginesFill />
-            <h1>Register </h1>
+            {/* <BsAirplaneEnginesFill /> */}
+            <h1>Schedule the Interview</h1>
           </Link>
 
           <Flex className="flex md:hidden items-center mr-2">
