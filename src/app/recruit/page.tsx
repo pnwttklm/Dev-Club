@@ -28,27 +28,49 @@ export default function HomePage() {
       try {
         // Capture the component as a canvas
         const canvas = await html2canvas(sectionRef.current, {
-          useCORS: true, // Allow cross-origin assets
+          useCORS: true,
           allowTaint: true,
-          scale: 2, // Higher resolution
+          scale: 2,
         });
 
-        // Convert the canvas to a data URL
-        const dataURL = canvas.toDataURL("image/png");
+        // Convert the canvas to a Blob
+        canvas.toBlob(async (blob) => {
+          if (blob) {
+            const fileName =
+              "Dev Club Recruit 2025 " + foundData?.nickname + ".png";
+            const file = new File([blob], fileName, { type: "image/png" });
 
-        // Mobile compatibility: Open in a new tab for download
-        const link = document.createElement("a");
-        link.href = dataURL;
-        link.download = "component.png";
-
-        // Fallback for Safari and other mobile browsers
-        if (navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)) {
-          window.open(dataURL, "_blank");
-        } else {
-          link.click();
-        }
+            // Check if the device is mobile and supports navigator.share
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(
+              navigator.userAgent
+            );
+            if (
+              isMobile &&
+              navigator.canShare &&
+              navigator.canShare({ files: [file] })
+            ) {
+              try {
+                await navigator.share({
+                  files: [file],
+                  title: "Shared Component",
+                  text: "Check out this captured component!",
+                });
+                console.log("Shared successfully!");
+              } catch (error) {
+                console.error("Error while sharing:", error);
+              }
+            } else {
+              // Fallback for desktop or unsupported mobile browsers
+              const link = document.createElement("a");
+              link.href = URL.createObjectURL(file);
+              link.download = fileName;
+              link.click();
+              console.log("Downloaded successfully!");
+            }
+          }
+        }, "image/png");
       } catch (error) {
-        console.error("Failed to capture and download the image:", error);
+        console.error("Error capturing the component:", error);
       }
     }
   };
