@@ -24,6 +24,7 @@ export default function HomePage() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
+
     if (sectionRef.current) {
       try {
         // Capture the component as a canvas
