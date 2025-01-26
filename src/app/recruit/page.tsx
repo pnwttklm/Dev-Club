@@ -9,64 +9,70 @@ import html2canvas from "html2canvas";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 
 export default function HomePage() {
-  const data = GetApplicants();
-  // const data = [
-  //   {
-  //     id: 6688123,
-  //     nickname: "John",
-  //     first_team: "bn",
-  //     teams: ["fw", "fm"],
-  //     "3-word": "I love coding",
-  //     anything: null,
-  //   },
-  // ];
+  // const data = GetApplicants();
+  const data = [
+    {
+      id: 6688123,
+      nickname: "John",
+      first_team: "bn",
+      teams: ["fw", "fm"],
+      "3-word": "I love coding",
+      anything: null,
+    },
+  ];
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
-
     if (sectionRef.current) {
+      const section = sectionRef.current;
+
       try {
-        // Capture the component as a canvas
-        const canvas = await html2canvas(sectionRef.current, {
+        // Capture the element with html2canvas
+        const canvas = await html2canvas(section, {
           useCORS: true,
           allowTaint: true,
-          scale: 2,
+          scale: 4,
         });
 
-        // Convert the canvas to a Blob
-        canvas.toBlob(async (blob) => {
+        canvas.toBlob((blob) => {
           if (blob) {
-            const fileName =
-              "Dev Club Recruit 2025 " + foundData?.nickname + ".png";
+            const fileName = "Dev Club Recruit 2025 " + foundData?.nickname + ".png";
             const file = new File([blob], fileName, { type: "image/png" });
 
-            // Check if the device is mobile and supports navigator.share
+            // Check if it's a mobile device and Safari
             const isMobile = /iPhone|iPad|iPod|Android/i.test(
               navigator.userAgent
             );
+            const isSafari = /^((?!chrome|android).)*safari/i.test(
+              navigator.userAgent
+            );
+
             if (
               isMobile &&
               navigator.canShare &&
               navigator.canShare({ files: [file] })
             ) {
-              try {
-                await navigator.share({
+              // Mobile: Trigger the share sheet if possible
+              navigator
+                .share({
                   files: [file],
                   title: "Shared Component",
                   text: "Check out this captured component!",
+                })
+                .catch((error) => {
+                  console.error("Share failed:", error);
+                  fallbackDownload(file);
                 });
-                console.log("Shared successfully!");
-              } catch (error) {
-                console.error("Error while sharing:", error);
-              }
+            } else if (isSafari && !isMobile) {
+              // Safari Desktop: Fallback to regular download link (Safari desktop does not support sharing API)
+              fallbackDownload(file);
             } else {
-              // Fallback for desktop or unsupported mobile browsers
+              // Non-Safari browsers or unsupported environments
               const link = document.createElement("a");
-              link.href = URL.createObjectURL(file);
+              link.href = URL.createObjectURL(blob);
               link.download = fileName;
               link.click();
-              console.log("Downloaded successfully!");
             }
           }
         }, "image/png");
@@ -76,6 +82,13 @@ export default function HomePage() {
     }
   };
 
+  // Fallback download function
+  const fallbackDownload = (file: File) => {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(file);
+    link.download = file.name;
+    link.click();
+  };
   const dep = [
     {
       name: "bn",
