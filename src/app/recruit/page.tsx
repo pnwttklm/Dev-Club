@@ -9,17 +9,17 @@ import html2canvas from "html2canvas";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 
 export default function HomePage() {
-  const data = GetApplicants();
-  // const data = [
-  //   {
-  //     id: 6688123,
-  //     nickname: "John",
-  //     first_team: "bn",
-  //     teams: ["fw", "fm"],
-  //     "3-word": "I love coding",
-  //     anything: null,
-  //   },
-  // ];
+  // const data = GetApplicants();
+  const data = [
+    {
+      id: 6688123,
+      nickname: "John",
+      first_team: "bn",
+      teams: ["fw", "fm"],
+      "3-word": "I love coding",
+      anything: null,
+    },
+  ];
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +27,11 @@ export default function HomePage() {
     if (sectionRef.current) {
       try {
         // Capture the section as a canvas
-        const canvas = await html2canvas(sectionRef.current);
+        const canvas = await html2canvas(sectionRef.current, {
+          useCORS: true, // Allow cross-origin assets
+          allowTaint: true, // Allow external content
+          scale: 2, // Increase resolution
+        });
 
         // Convert the canvas to an image (PNG)
         const dataURL = canvas.toDataURL("image/png");
@@ -94,17 +98,15 @@ export default function HomePage() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      const value = e.currentTarget.value;
-      const regex = /^[6]\d{1}(88|87)\d{3}$/;
+    const value = e.currentTarget.value;
+    const regex = /^[6]\d{1}(88|87)\d{3}$/;
 
-      if (regex.test(value)) {
-        setId(value);
-        setError("");
-        checkId(parseInt(value));
-      } else {
-        setError("Invalid Student ID");
-      }
+    if (regex.test(value)) {
+      setId(value);
+      setError("");
+      checkId(parseInt(value));
+    } else {
+      setError("Invalid Student ID");
     }
   };
 
@@ -122,7 +124,7 @@ export default function HomePage() {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <input
           type="text"
-          onKeyDown={handleKeyDown}
+          onKeyDown={(e) => (e.key === "Enter" ? handleKeyDown(e) : undefined)}
           placeholder="Enter Your Student ID"
           className="w-2/3 lg:w-1/3 p-2 border border-gray-300 rounded-lg"
         />
@@ -143,11 +145,12 @@ export default function HomePage() {
         >
           <div className="items-start w-full">
             <Image
-              src="logo_ww.svg"
+              src="/logo_ww.svg"
               alt="hero"
               className="w-24 h-auto"
               width={100}
               height={100}
+              crossOrigin="anonymous"
             />
           </div>
           <DotLottieReact
