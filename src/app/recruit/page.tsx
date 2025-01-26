@@ -9,38 +9,44 @@ import html2canvas from "html2canvas";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 
 export default function HomePage() {
-  // const data = GetApplicants();
-  const data = [
-    {
-      id: 6688123,
-      nickname: "John",
-      first_team: "bn",
-      teams: ["fw", "fm"],
-      "3-word": "I love coding",
-      anything: null,
-    },
-  ];
+  const data = GetApplicants();
+  // const data = [
+  //   {
+  //     id: 6688123,
+  //     nickname: "John",
+  //     first_team: "bn",
+  //     teams: ["fw", "fm"],
+  //     "3-word": "I love coding",
+  //     anything: null,
+  //   },
+  // ];
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
     if (sectionRef.current) {
       try {
-        // Capture the section as a canvas
+        // Capture the component as a canvas
         const canvas = await html2canvas(sectionRef.current, {
           useCORS: true, // Allow cross-origin assets
-          allowTaint: true, // Allow external content
-          scale: 2, // Increase resolution
+          allowTaint: true,
+          scale: 2, // Higher resolution
         });
 
-        // Convert the canvas to an image (PNG)
+        // Convert the canvas to a data URL
         const dataURL = canvas.toDataURL("image/png");
 
-        // Create a download link
+        // Mobile compatibility: Open in a new tab for download
         const link = document.createElement("a");
         link.href = dataURL;
-        link.download = "Dev Cub Recruit 2025 " + foundData?.nickname + ".png";
-        link.click();
+        link.download = "component.png";
+
+        // Fallback for Safari and other mobile browsers
+        if (navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)) {
+          window.open(dataURL, "_blank");
+        } else {
+          link.click();
+        }
       } catch (error) {
         console.error("Failed to capture and download the image:", error);
       }
@@ -172,7 +178,7 @@ export default function HomePage() {
           <p className="text-xl font-medium text-center">
             Let&apos;s review your information.
           </p>
-          <div className="bg-white text-black p-6 rounded-3xl shadow-md w-10/12 mt-6">
+          <div className="bg-white text-black p-6 rounded-3xl shadow-md lg:w-10/12 mt-6">
             <div className="items-center justify-center flex flex-col gap-4 mt-12">
               <p className="text-xl text-center text-black">
                 The team you&apos;re most interested in is:
