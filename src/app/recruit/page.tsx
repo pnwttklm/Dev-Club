@@ -9,17 +9,17 @@ import html2canvas from "html2canvas";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 
 export default function HomePage() {
-  // const data = GetApplicants();
-  const data = [
-    {
-      id: 6688123,
-      nickname: "John",
-      first_team: "bn",
-      teams: ["fw", "fm"],
-      "3-word": "I love coding",
-      anything: null,
-    },
-  ];
+  const data = GetApplicants();
+  // const data = [
+  //   {
+  //     id: 6688123,
+  //     nickname: "John",
+  //     first_team: "bn",
+  //     teams: ["fw", "fm"],
+  //     "3-word": "I love coding",
+  //     anything: null,
+  //   },
+  // ];
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
