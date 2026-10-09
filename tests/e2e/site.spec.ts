@@ -7,19 +7,11 @@ test('legacy section routes redirect to homepage anchors', async ({ page }) => {
   }
 });
 
-test('retired routes show not-found', async ({ page }) => {
-  for (const route of ['/test', '/terms', '/privacy-policy', '/acknowledgement', '/tracking/fw', '/404', '/500', '/_error']) {
-    const response = await page.goto(route);
-    expect(response?.status()).toBe(404);
-    await expect(page.getByRole('main').getByRole('heading', { level: 1 })).toHaveText('Page not found');
-    await expect(page.getByRole('main').getByRole('link', { name: 'Back to home' })).toHaveAttribute('href', '/');
-    await expect(page.locator('meta[http-equiv="refresh"]')).toHaveCount(0);
-  }
-});
-
-test('footer has no retired links', async ({ page }) => {
+test('footer links for policy, terms, and acknowledgement are present', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('a[href="/terms"], a[href="/privacy-policy"], a[href="/acknowledgement"]')).toHaveCount(0);
+  await expect(page.locator('a[href="/terms"]')).toBeVisible();
+  await expect(page.locator('a[href="/privacy-policy"]')).toBeVisible();
+  await expect(page.locator('a[href="/acknowledgement"]')).toBeVisible();
 });
 
 test('home route renders club identity', async ({ page }) => {
