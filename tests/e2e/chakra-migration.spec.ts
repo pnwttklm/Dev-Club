@@ -31,11 +31,54 @@ test('mobile navigation disclosure remains keyboard operable', async ({ page }) 
   await expect(trigger).toHaveAttribute('aria-expanded', 'false');
 });
 
-test('restored policy terms and acknowledgement routes show review notices', async ({ page }) => {
-  for (const route of ['/privacy-policy', '/terms', '/acknowledgement']) {
+test('restored documents are reachable with full content and current naming', async ({ page }) => {
+  const entity = 'Dev Club, Faculty of Information and Communication Technology, Mahidol University';
+  for (const route of ['/privacy-policy', '/terms']) {
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
-    await expect(page.getByText('This page is under review. Updated information will be published when confirmed.', { exact: true })).toBeVisible();
-    await expect(page.getByRole('main').getByRole('heading', { level: 1 })).toHaveCount(1);
+    const main = page.getByRole('main');
+    await expect(main.getByRole('heading', { level: 1 })).toHaveCount(1);
+    await expect(main).toContainText(entity);
+    await expect(main).not.toContainText(/ICT20|ICT21|DST2|President Team|under review/);
+    await expect(main.locator('[lang="en"]')).toBeVisible();
+    await expect(main.locator('[lang="th"]')).toBeVisible();
+  }
+  await page.goto('/privacy-policy');
+  await expect(page.getByRole('heading', { name: 'Data Subject Rights', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Data Breach Notification', exact: true })).toBeVisible();
+  await expect(page.getByRole('main')).toContainText('We store your personal data as hard copy and soft copy.');
+  await expect(page.getByRole('main')).toContainText('poonyawatt.klu@student.mahidol.ac.th');
+  await page.goto('/terms');
+  await expect(page.getByRole('heading', { name: 'Your Use of Site', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Applying to the Game', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Game Details', exact: true })).toBeVisible();
+  await expect(page.getByRole('main')).toContainText('Last updated July 25, 2023. 10:10 AM Indochina Time.');
+  const response = await page.goto('/acknowledgement');
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole('main').getByRole('heading', { level: 1 })).toHaveText('Acknowledgement');
+  await expect(page.getByText('This website has been developed by', { exact: true })).toBeVisible();
+  await expect(page.getByText('Poonyawatt Klumnaim - Faculty of ICT', { exact: true })).toBeVisible();
+});
+
+test('retained documents fit narrow and desktop viewports', async ({ page }) => {
+  for (const width of [320, 1280]) {
+    await page.setViewportSize({ width, height: 844 });
+    for (const route of ['/privacy-policy', '/terms', '/acknowledgement']) {
+      await page.goto(route);
+      const main = page.getByRole('main');
+      await expect(main).toBeVisible();
+      const bounds = await main.evaluate(element => ({
+        left: element.getBoundingClientRect().left,
+        right: element.getBoundingClientRect().right,
+        clientWidth: element.clientWidth,
+        scrollWidth: element.scrollWidth,
+      }));
+      expect(bounds.left).toBeGreaterThanOrEqual(0);
+      expect(bounds.right).toBeLessThanOrEqual(width);
+      expect(bounds.scrollWidth).toBeLessThanOrEqual(bounds.clientWidth);
+      if (route !== '/acknowledgement') {
+        await page.screenshot({ path: `/tmp/dev-club-${route.slice(1)}-${width}.png` });
+      }
+    }
   }
 });

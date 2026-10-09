@@ -2,6 +2,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/e2e',
+  // Multi-route smoke tests share one cold Next development server.
+  workers: 1,
+  timeout: 60_000,
   use: {
     baseURL: 'http://localhost:3100',
     trace: 'retain-on-failure',
