@@ -8,8 +8,8 @@ import {
 export default function Header() {
     return (
       <>
-      <div class="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
-        <SimpleGrid columns={[1, 1, 2]} spacingX='40px' spacingY='20px'>
+      <div className="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
+        <SimpleGrid columns={[1, 1, 2]} columnGap='40px' rowGap='20px'>
         <div>
                 <Image src='head_banner.svg' width={1000} height={1000} alt='banner' className='w-full'/>
           </div>

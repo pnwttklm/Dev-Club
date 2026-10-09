@@ -1,351 +1,53 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  Center,
-  Collapse,
-  Flex,
-  Text,
-  Tabs,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tab,
-  IconButton,
-  Stack,
-  Icon,
-  Input,
-  Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  useColorModeValue,
-  useDisclosure,
-  useTabs,
-  HStack,
-} from "@chakra-ui/react";
-
-import {
-  BsListNested,
-  BsXLg,
-  BsChevronDown,
-  BsChevronRight,
-  BsFilter,
-  BsAirplaneEnginesFill,
-} from "react-icons/bs";
-
+import { Box, Collapsible, Flex, HStack, IconButton, Link, Stack } from "@chakra-ui/react";
+import { BsListNested, BsXLg } from "react-icons/bs";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function WithSubnavigation() {
-  const { isOpen, onToggle } = useDisclosure();
-
-  function navColor() {
-    if (IsInclude()) {
-      return "white";
-    } else {
-      return "[#1D4F91]";
-    }
-  }
-
-  function navColorContrast() {
-    if (IsInclude()) {
-      return "[#1D4F91]";
-    } else {
-      return "white";
-    }
-  }
-
-  function Logo() {
-    if (IsInclude()) {
-      return "logo_k.svg";
-    } else {
-      return "logo_k.svg";
-    }
-  }
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <Box id="about" className="z-20 top-0 sticky">
-      <Flex className={` w-screen h-20   bg-[#FFFFFF]`}>
-        {/* drop-shadow-md */}
-        <Flex className="flex flex-1 justify-between">
-          <Link href="/" className="nav-items item-center">
-            <Image
-              width={84}
-              height={84}
-              src={`/${Logo()}`}
-              className="pl-6 pt-2"
-              alt="logo-navbar"
-            />
+    <Box id="about" className="z-20 top-0 sticky" bg="bg" color="fg">
+      <Flex className="w-screen h-20" align="center" justify="space-between">
+        <Link href="/" className="nav-items item-center">
+          <Image width={84} height={84} src="/logo_k.svg" className="pl-6 pt-2" alt="Dev Club" />
+        </Link>
+        <Stack direction="row" gap={{ base: "0.5", lg: "7" }} alignItems="center" className="hidden md:flex mr-4">
+          {NAV_ITEMS.map(item => (
+            <Box key={item.label} style={{ padding: "15px" }}>
+              <Link p={2} href={item.href} fontSize="lg" fontWeight={400} color="fg"
+                className="transition-colors hover:italic hover:underline">{item.label}</Link>
+            </Box>
+          ))}
+        </Stack>
+        <HStack>
+          <Link href="/recruit" className="px-8 py-4 flex items-center gap-3 nav-items bg-club-ink text-white hover:text-black hover:bg-white hover:border-2 hover:border-black mr-6 hover:italic">
+            Schedule the Interview
           </Link>
-          <Flex className="hidden md:flex mr-4">
-            <DesktopNav />
-          </Flex>
-        </Flex>
-
-        <div className="flex items-center">
-          <Link
-            href="/recruit"
-            className="px-8 py-4 flex flex-row items-center gap-3 nav-items bg-[#001C26] text-white  hover:text-black hover:bg-white hover:border-2 hover:border-black mr-6 hover:italic"
-          >
-            {/* <BsAirplaneEnginesFill /> */}
-            <h1>Schedule the Interview</h1>
-          </Link>
-
-          <Flex className="flex md:hidden items-center mr-2">
-            <IconButton
-              className={` text-${navColorContrast()} text-3xl`}
-              onClick={onToggle}
-              icon={
-                isOpen ? (
-                  <BsXLg w={12} h={12} />
-                ) : (
-                  <BsListNested w={12} h={12} />
-                )
-              }
-              variant="unstyled"
-              aria-label={"Toggle Navigation"}
-            />
-          </Flex>
-        </div>
+          <IconButton className="md:hidden mr-2" onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Navigation" aria-expanded={isOpen} aria-controls="mobile-navigation"
+            variant="ghost" color="fg" fontSize="3xl">
+            {isOpen ? <BsXLg /> : <BsListNested />}
+          </IconButton>
+        </HStack>
       </Flex>
-
-      <Collapse in={isOpen} animateOpacity className=" text-white">
-        <MobileNav />
-      </Collapse>
+      <Collapsible.Root open={isOpen}>
+        <Collapsible.Content id="mobile-navigation">
+          <Stack bg="bg" color="fg" className="h-screen p-4" display={{ md: "none" }}>
+            {NAV_ITEMS.map(item => (
+              <Link key={item.label} py={2} href={item.href} fontWeight={500} fontSize="2xl">{item.label}</Link>
+            ))}
+          </Stack>
+        </Collapsible.Content>
+      </Collapsible.Root>
     </Box>
   );
 }
 
-const DesktopNav = function () {
-  const pathname = usePathname();
-
-  function navColor() {
-    if (IsInclude()) {
-      return "#000000";
-    } else {
-      return "white";
-    }
-  }
-
-  const linkColor = useColorModeValue(navColor(), navColor());
-  const linkHoverColor = useColorModeValue("#000000", "white");
-  const popoverContentBgColor = useColorModeValue("#000000", "white");
-
-  return (
-    <Stack
-      direction={"row"}
-      spacing={{ base: "0.5", lg: "7" }}
-      alignItems="center"
-    >
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label} style={navItem.style}>
-          <Popover trigger={"hover"} placement={"bottom-end"}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"lg"}
-                fontWeight={400}
-                color={linkColor}
-                className=" transition-colors duration-250 hover:italic hover:underline"
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
-            </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
-        </Box>
-      ))}
-    </Stack>
-  );
-};
-
-const DesktopSubNav = function ({ label, href, subLabel }) {
-  return (
-    <Link
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("#00FF66", "#F5F5F7") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "#000000" }}
-            fontWeight={400}
-            fontSize={"sm"}
-          >
-            {label}
-          </Text>
-          <Text fontSize={"sm"} fontWeight={200}>
-            {subLabel}
-          </Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"#000000"} w={5} h={5} as={BsChevronRight} />
-        </Flex>
-      </Stack>
-    </Link>
-  );
-};
-
-const MobileNav = function () {
-  const pathname = usePathname();
-  function navColor() {
-    if (IsInclude()) {
-      return "white";
-    } else {
-      return "black";
-    }
-  }
-  return (
-    <Stack
-      className={`h-screen backdrop-blur-[56px] bg-${navColor()} p-4`}
-      display={{ md: "none" }}
-    >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  );
-};
-
-const MobileNavItem = function ({ label, children, href }) {
-  const pathname = usePathname();
-
-  function navColorContrast() {
-    if (IsInclude()) {
-      return "black";
-    } else {
-      return "white";
-    }
-  }
-  const { isOpen, onToggle } = useDisclosure();
-
-  return (
-    <HStack spacing={4}>
-      <Flex
-        py={2}
-        as={Link}
-        href={href ?? "#"}
-        justify={"space-between"}
-        align={"center"}
-        _hover={{
-          textDecoration: "none",
-        }}
-      >
-        <Text
-          fontWeight={500}
-          className="text-2xl"
-          color={`${navColorContrast()}`}
-        >
-          {label}
-        </Text>
-      </Flex>
-      {children && (
-        <Icon
-          as={BsChevronDown}
-          transition={"all .25s ease-in-out"}
-          transform={isOpen ? "rotate(180deg)" : ""}
-          w={12}
-          h={12}
-          onClick={onToggle}
-        />
-      )}
-
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
-        <Stack
-          mt={2}
-          pl={4}
-          borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
-          align={"start"}
-        >
-          {children &&
-            children.map((child, index) => (
-              <Link key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Link>
-            ))}
-        </Stack>
-      </Collapse>
-    </HStack>
-  );
-};
-
-const navStyle = {
-  padding: "15px",
-};
-
 const NAV_ITEMS = [
-  {
-    label: "Newsroom",
-    style: { ...navStyle },
-    href: "/",
-  },
-  {
-    label: "Work",
-    style: { ...navStyle },
-    href: "/",
-  },
-  {
-    label: "About",
-    style: { ...navStyle },
-    href: "/",
-  },
-  {
-    label: "Team",
-    style: { ...navStyle },
-    href: "/",
-  },
+  { label: "Newsroom", href: "/" },
+  { label: "Work", href: "/" },
+  { label: "About", href: "/" },
+  { label: "Team", href: "/" },
 ];
-
-function IsInclude() {
-  const pathname = usePathname();
-  if (
-    pathname.includes("/guide-book") ||
-    pathname.includes("/meet-our-team") ||
-    pathname.includes("/privacy-policy") ||
-    pathname.includes("/terms")
-  ) {
-    return true;
-  } else {
-    return true;
-  }
-}

@@ -8,7 +8,7 @@ export default function whyUs() {
     return (
       <>
       <div className="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
-        <SimpleGrid columns={[1, 1, 3]} spacingX='40px' spacingY='20px'>
+        <SimpleGrid columns={[1, 1, 3]} columnGap='40px' rowGap='20px'>
         {qElement.map((qE, index) => (
             <div className=' p-6' key={index}>
                 <Image src={qE.imgSrc} width={500} height={500} alt='banner' className='h-[300px]'/>
