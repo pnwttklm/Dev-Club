@@ -1,8 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer reset, base, tokens, recipes, theme, components, utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@theme inline {
+  --color-club-ink: var(--chakra-colors-club-ink);
+  --color-frontend-green: var(--chakra-colors-role-frontend);
+  --color-mobile-blue: var(--chakra-colors-role-mobile);
+  --color-backend-coral: var(--chakra-colors-role-backend);
+  --color-design-magenta: var(--chakra-colors-role-design);
+  --color-qa-gold: var(--chakra-colors-role-qa);
+  --color-recruit-violet: var(--chakra-colors-recruit-violet);
+  --color-recruit-sky: var(--chakra-colors-recruit-sky);
+  --font-sans: var(--font-poppins), Poppins, sans-serif;
+}
 
 body {
   overflow-x: hidden;
-  background-color:white !important;
+  background-color: var(--chakra-colors-bg, white);
+  color: var(--chakra-colors-fg, black);
 } 
