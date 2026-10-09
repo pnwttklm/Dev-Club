@@ -39,7 +39,7 @@ test('restored documents are reachable with full content and current naming', as
     const main = page.getByRole('main');
     await expect(main.getByRole('heading', { level: 1 })).toHaveCount(1);
     await expect(main).toContainText(entity);
-    await expect(main).not.toContainText(/ICT20|ICT21|DST2|President Team|under review/);
+    await expect(main).not.toContainText(/ICT20|ICT21|DST2|President Team|ทีมประธานนักศึกษา|ทีมประธานรุ่น|under review/);
     await expect(main.locator('[lang="en"]')).toBeVisible();
     await expect(main.locator('[lang="th"]')).toBeVisible();
   }
