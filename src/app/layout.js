@@ -1,9 +1,9 @@
 import './globals.css'
-import { Providers } from "./providers";
+import { Provider } from "../components/ui/provider";
 import Nav from '../components/nav'
 import Footer from '../components/footer'
 import { Poppins } from 'next/font/google';
-const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
+const poppins = Poppins({ variable: "--font-poppins", subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
 export const metadata = {
   title: 'Dev Club',
@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
       <link rel="shortcut icon" href="favicon.ico" />
       <link rel="icon" href="icon.svg" />
@@ -21,12 +21,12 @@ export default function RootLayout({ children }) {
         href="apple-icon.ico"
       />
       </head>
-      <body className={poppins.className}>
- 	      <Providers>
+      <body className={`${poppins.className} ${poppins.variable}`}>
+ 	      <Provider>
           <Nav/>
           {children}
           <Footer/>
-      	</Providers>
+      	</Provider>
       </body>
     </html>
     
