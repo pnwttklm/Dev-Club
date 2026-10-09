@@ -131,3 +131,67 @@ test('reduced motion preserves immediate anchor access', async ({ page }) => {
   await page.goto('/');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
 });
+
+const retainedRoutes = ['/', '/recruit', '/training', '/tracking/fw', '/privacy-policy', '/terms', '/acknowledgement', '/not-a-real-route'];
+
+test('navigation has no hydration or runtime errors', async ({ page }) => {
+  const runtimeErrors: string[] = [];
+  const hydrationErrors: string[] = [];
+  page.on('pageerror', error => runtimeErrors.push(error.message));
+  page.on('console', message => {
+    if (message.type() === 'error' && /hydration|did not match|server rendered|hydrating/i.test(message.text())) hydrationErrors.push(message.text());
+  });
+  for (const route of retainedRoutes) {
+    await page.goto(route);
+    await expect(page.getByRole('main')).toBeVisible();
+    await page.waitForLoadState('networkidle');
+  }
+  await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Joining information' }).click();
+  await expect(page).toHaveURL(/\/recruit$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Applications are currently closed');
+  expect(runtimeErrors).toEqual([]);
+  expect(hydrationErrors).toEqual([]);
+});
+
+test('skip-link Enter focuses the only main landmark on every retained route', async ({ page }) => {
+  for (const route of retainedRoutes) {
+    await page.goto(route);
+    await expect(page.getByRole('main')).toHaveCount(1);
+    await page.keyboard.press('Tab');
+    await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('main')).toBeFocused();
+    await expect(page.getByRole('main')).toHaveAttribute('id', 'main-content');
+  }
+});
+
+for (const width of [320, 390, 768, 1024, 1280]) {
+  test(`retained routes fit and images load at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    for (const route of retainedRoutes.slice(1)) {
+      await page.goto(route);
+      for (const image of await page.locator('img').all()) {
+        await image.scrollIntoViewIfNeeded();
+        await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+      }
+      expect(await page.evaluate(() => ({
+        overflow: document.documentElement.scrollWidth > innerWidth,
+        outside: [...document.querySelectorAll('main *, nav *, footer *')].filter(el => { const r = el.getBoundingClientRect(); return r.width > 0 && (r.left < -1 || r.right > innerWidth + 1); }).map(el => el.tagName),
+        broken: [...document.images].filter(img => !img.complete || img.naturalWidth === 0).map(img => img.src),
+      }))).toEqual({ overflow: false, outside: [], broken: [] });
+      await page.screenshot({ path: `/tmp/task6-${route.slice(1).replaceAll('/', '-')}-${width}.png`, fullPage: true });
+    }
+  });
+}
+
+test('tracking keeps visitors local with an unavailable status', async ({ page }) => {
+  const externalRequests: string[] = [];
+  page.on('request', request => {
+    if (!new URL(request.url()).hostname.match(/^(localhost|127\.0\.0\.1)$/)) externalRequests.push(request.url());
+  });
+  await page.goto('/tracking/fw');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Frontend tracking is currently unavailable');
+  await expect(page.getByRole('main').getByRole('link', { name: 'Back to Dev Club' })).toHaveAttribute('href', '/');
+  await page.waitForLoadState('networkidle');
+  expect(externalRequests).toEqual([]);
+});

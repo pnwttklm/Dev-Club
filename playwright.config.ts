@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/e2e',
-  // Multi-route smoke tests share one cold Next development server.
+  // Browser acceptance runs against a freshly built production application.
   workers: 1,
   timeout: 60_000,
   use: {
@@ -16,9 +16,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev -- --hostname localhost --port 3100',
+    command: 'npm run build && npm run start -- --hostname localhost --port 3100',
     url: 'http://localhost:3100',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    reuseExistingServer: false,
+    timeout: 240_000,
   },
 });
