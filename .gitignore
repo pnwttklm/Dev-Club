@@ -37,3 +37,6 @@ next-env.d.ts
 .agent
 .agents
 .codex
+.impeccable
+PRODUCT.md
+DESIGN.md
