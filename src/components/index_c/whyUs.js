@@ -1,31 +1,19 @@
-'use client'
-import Image from 'next/image';
-import { Box, Link, SimpleGrid } from '@chakra-ui/react';
+import Image from "next/image";
+import { SimpleGrid } from "@chakra-ui/react";
 
-
-export default function whyUs() {
-
-    return (
-      <>
-      <div className="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
-        <SimpleGrid columns={[1, 1, 3]} columnGap='40px' rowGap='20px'>
-        {qElement.map((qE, index) => (
-            <div className=' p-6' key={index}>
-                <Image src={qE.imgSrc} width={500} height={500} alt='banner' className='h-[300px]'/>
-                <h1 className={`text-black text-4xl text-left pt-6 pb-3`}>
-                {qE.name.split('\n').map((line, i) => (
-                  <div key={i}>{line}</div>
-                ))}
-              </h1>
-                <h1 className={`text-black text-xl text-left mt-6`}>{qE.des}</h1>
-            </div>
-        ))}
-        </SimpleGrid>
-      </div>
-      </>
-      
-    );
-  }
+export default function WhyUs() {
+  return (
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="10" mt="10">
+      {qElement.map(benefit => (
+        <article key={benefit.name}>
+          <Image src={benefit.imgSrc} width={500} height={500} alt="" className="h-[260px] w-full object-contain" />
+          <h3 className="mt-6 text-3xl leading-tight">{benefit.name.replace('\n', ' ')}</h3>
+          <p className="mt-4 text-xl leading-relaxed">{benefit.des}</p>
+        </article>
+      ))}
+    </SimpleGrid>
+  );
+}
 
   const qElement = [
     {

@@ -13,6 +13,8 @@ const config = defineConfig({
         heading: { value: "var(--font-poppins), Poppins, sans-serif" },
       },
       colors: {
+        black: { value: "#000000" },
+        white: { value: "#FFFFFF" },
         club: { ink: { value: "#001C26" } },
         faq: { gray: { value: "#EDEDED" } },
         role: {

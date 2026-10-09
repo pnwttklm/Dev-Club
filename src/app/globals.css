@@ -15,7 +15,24 @@
 }
 
 body {
-  overflow-x: hidden;
   background-color: var(--chakra-colors-bg, white);
   color: var(--chakra-colors-fg, black);
 } 
+
+html { scroll-behavior: smooth; }
+main section[id] { scroll-margin-top: 96px; }
+.landing-section { padding: 48px 24px; max-width: 1920px; margin: 0 auto; }
+.landing-section h2 { font-size: 1.5rem; line-height: 1.25; text-align: center; }
+.hero h1 { font-size: clamp(2rem, 3.6vw, 3.75rem); line-height: 1.1; font-weight: 400; overflow-wrap: break-word; }
+.hero h1 em { display: block; margin-top: 16px; }
+.skip-link { position: fixed; left: 16px; top: 16px; z-index: 50; padding: 12px 16px; background: white; color: black; transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+a { text-underline-offset: 4px; }
+footer a { display: inline-flex; align-items: center; min-height: 44px; }
+footer a:focus-visible { outline-color: white; }
+@media (min-width: 768px) { .landing-section h2 { font-size: 2.25rem; } }
+@media (min-width: 1280px) { .landing-section { padding: 64px 128px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-scope="collapsible"][data-part="content"], [data-scope="accordion"][data-part="item-content"] { animation: none; }
+}

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function RecruitmentPage() {
   return (
-    <main className="mx-auto my-12 w-full max-w-4xl px-6 sm:my-20">
+    <main id="main-content" tabIndex={-1} className="mx-auto my-12 w-full max-w-4xl px-6 sm:my-20">
       <section className="rounded-3xl bg-gradient-to-br from-[#9C58FD]/20 to-[#74DAFF]/30 px-6 py-12 text-[#001C26] sm:px-12 sm:py-16">
         <h1 className="max-w-2xl text-3xl font-medium leading-tight sm:text-5xl">
           Applications are currently closed

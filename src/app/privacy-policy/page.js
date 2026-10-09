@@ -5,7 +5,7 @@ export const metadata = { title: "Privacy Policy | Dev Club ICT Mahidol" };
 export default function privacy() {
 
   return(
-    <main className="mx-auto max-w-[75ch] break-words px-6 py-12 text-base leading-7 text-black [&_p]:mb-4 [&_li]:mb-2">
+    <main id="main-content" tabIndex={-1} className="mx-auto max-w-[75ch] break-words px-6 py-12 text-base leading-7 text-black [&_p]:mb-4 [&_li]:mb-2">
       <h1 className="mb-10 text-3xl font-semibold leading-tight md:text-4xl">Privacy Policy</h1>
 
     <div className="bg-white">

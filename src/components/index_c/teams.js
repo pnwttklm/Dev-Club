@@ -1,64 +1,56 @@
-'use client'
-import Image from 'next/image';
-import { Box, Link, SimpleGrid } from '@chakra-ui/react';
+import Image from "next/image";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 
-
-export default function teams() {
-
-    return (
-      <>
-      <div className="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
-        <SimpleGrid columns={[1, 1, 5]} columnGap='40px' rowGap='20px'>
-        {qElement.map((qE, index) => (
-            <div className='bg-black p-6' key={index}>
-                <Image src={qE.imgSrc} width={1000} height={1000} alt='banner' className='h-[200px]'/>
-                <h1 className={`${qE.color} text-white text-3xl text-left mt-6 mb-3`}>{qE.name}</h1>
-                <h1 className={`text-white text-xl text-left`}>{qE.des}</h1>
-                <h1 className={`text-white text-xl text-left pt-3`}>Tools: {qE.tools}</h1>
-            </div>
-        ))}
-        </SimpleGrid>
-      </div>
-      </>
-      
-    );
-  }
+export default function Teams() {
+  return (
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3, "2xl": 5 }} gap="6" mt="10">
+      {qElement.map(team => (
+        <Box as="article" key={team.name} bg="bg.inverted" color="fg.inverted" p="6" minW="0">
+          <Image src={team.imgSrc} width={1000} height={1000} alt="" className="h-[200px] w-full object-contain" />
+          <Box as="h3" bg={team.color} color={team.foreground || "white"} fontSize="3xl" lineHeight="1.25" fontWeight="400" mt="6" mb="4">{team.name}</Box>
+          <p className="text-xl leading-relaxed">{team.des}</p>
+          <p className="mt-4 text-xl leading-relaxed">Tools: {team.tools}</p>
+        </Box>
+      ))}
+    </SimpleGrid>
+  );
+}
 
   const qElement = [
     {
       name: 'FRONTEND WEB',
-      imgSrc: 'fwLogo.svg',
-      color: 'bg-[#00FF66]',
+      imgSrc: '/fwLogo.svg',
+      color: 'role.frontend',
       des: 'Elevate Your Design Game. Dive into the Future of Web Development. Stay Ahead with Stunning and Innovative Designs.',
-      tools: 'React, Next.js',
+      foreground: 'black', tools: 'React, Next.js',
     },
     {
         name: 'FRONTEND APP',
-        imgSrc: 'faLogo.svg',
-        color: 'bg-[#006AFF]',
+        imgSrc: '/faLogo.svg',
+        color: 'role.mobile',
         des: 'Explore the Future of Mobile Apps! Discover the Next Level of Innovation and Convenience. Join Us in Pushing Boundaries.',
         tools: 'Dart, Flutter',
       },
       {
         name: 'BACKEND',
-        imgSrc: 'bnLogo.svg',
-        color: 'bg-[#FF5656]',
+        imgSrc: '/bnLogo.svg',
+        color: 'role.backend',
         des: 'The Backbone Behind Every Project. Managing data, securing information, and delivering smooth functionality, it\'s the invisible force that keeps everything running seamlessly.',
         tools: 'JS, TS, Express',
       },
       {
         name: 'DESIGN & ART',
-        imgSrc: 'daLogo.svg',
-        color: 'bg-[#FA00FF]',
+        imgSrc: '/daLogo.svg',
+        color: 'role.design',
         des: 'Follow Your Heart to a World of Beauty and Tranquility. Explore Inspiring Creations and Express Your Inner Artist.',
         tools: 'Adobe Illustrator, Figma',
       },
       {
         name: 'Quality Assurance',
-        imgSrc: 'qaLogo.svg',
-        color: 'bg-[#FFC700]',
-        des: 'Ensuring Flawless Execution. We meticulously test and fine-tune every aspect of every project to guarantee it performs perfectly.',
-        tools: '-',
+        imgSrc: '/qaLogo.svg',
+        color: 'role.qa',
+        des: 'Test and refine projects to help the team identify problems and improve how the software works.',
+        foreground: 'black', tools: '-',
       },
 ]
 

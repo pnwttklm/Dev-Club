@@ -4,7 +4,7 @@ import { Accordion } from "@chakra-ui/react";
 import { BsPlusCircle } from "react-icons/bs";
 import { AccordionItemContent } from "./ui/accordion";
 
-export default function QuestionCard({ value, question, answer }) {
+function QuestionCard({ value, question, answer }) {
   return (
     <Accordion.Item value={value}>
       <h3>
@@ -20,4 +20,8 @@ export default function QuestionCard({ value, question, answer }) {
       </AccordionItemContent>
     </Accordion.Item>
   );
+}
+
+export default function Questions() {
+  return <Accordion.Root collapsible><QuestionCard value="faq-club" question="What is this club" answer={<p>This club is for those who want to learn about working in developer field, not only coding but also Design, art, and QA.</p>} /></Accordion.Root>;
 }

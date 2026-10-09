@@ -50,3 +50,84 @@ test('training routes stay local', async ({ page }) => {
     await expect(page.getByRole('main').getByRole('heading', { level: 1 })).toHaveText('Training resources are currently unavailable');
   }
 });
+
+const anchors = [['About Us', 'about'], ['Why Dev Club', 'why-us'], ['Teams', 'teams'], ['FAQ', 'faqs']];
+test('landing semantics and navigation destinations', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole('main')).toHaveCount(1);
+  const nav = page.getByRole('navigation', { name: 'Main navigation' });
+  for (const [label, id] of anchors) {
+    await expect(nav.getByRole('link', { name: label, exact: true })).toHaveAttribute('href', `/#${id}`);
+    await expect(page.locator(`main section#${id}`)).toHaveCount(1);
+  }
+  await expect(nav.getByRole('link', { name: 'Dev Club home' })).toHaveAttribute('href', '/');
+  await expect(nav.getByRole('link', { name: 'Joining information' })).toHaveAttribute('href', '/recruit');
+  await nav.getByRole('link', { name: 'Why Dev Club' }).click();
+  await expect.poll(() => page.locator('#why-us').evaluate(el => Math.round(el.getBoundingClientRect().top))).toBeLessThanOrEqual(100);
+  expect(await page.locator('#why-us').evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(80);
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('smooth');
+});
+
+for (const width of [320, 390, 768, 1024, 1280]) {
+  test(`landing fits and images load at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    for (const image of await page.locator('img').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+    }
+    await page.waitForLoadState('networkidle');
+    const defects = await page.evaluate(() => ({
+      overflow: document.documentElement.scrollWidth > window.innerWidth,
+      outside: [...document.querySelectorAll('main *, nav *, footer *')].filter(el => { const r = el.getBoundingClientRect(); return r.width > 0 && (r.left < -1 || r.right > innerWidth + 1); }).map(el => el.tagName),
+      images: [...document.images].filter(img => !img.complete || img.naturalWidth === 0).map(img => img.src),
+    }));
+    expect(defects).toEqual({ overflow: false, outside: [], images: [] });
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.screenshot({ path: `/tmp/task5-${width}.png`, fullPage: true });
+  });
+}
+
+test('team title foregrounds have sufficient contrast', async ({ page }) => {
+  await page.goto('/');
+  for (const name of ['FRONTEND WEB', 'Quality Assurance']) {
+    expect(await page.getByRole('heading', { name, exact: true }).evaluate(el => getComputedStyle(el).color)).toBe('rgb(0, 0, 0)');
+  }
+});
+
+test('mobile disclosure and FAQ work with keyboard', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.goto('/');
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Dev Club home' })).toBeFocused();
+  await page.keyboard.press('Tab');
+  const menu = page.getByRole('button', { name: 'Toggle Navigation' });
+  await expect(menu).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(menu).toHaveAttribute('aria-expanded', 'true');
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'About Us', exact: true })).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await expect(menu).toBeFocused();
+  await page.keyboard.press('Space');
+  await expect(menu).toHaveAttribute('aria-expanded', 'true');
+  await page.getByRole('link', { name: 'FAQ', exact: true }).press('Enter');
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  const faq = page.getByRole('button', { name: 'What is this club' });
+  await faq.focus();
+  await page.keyboard.press('Enter');
+  await expect(faq).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByText('This club is for those')).toBeVisible();
+  await page.keyboard.press('Space');
+  await expect(faq).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('reduced motion preserves immediate anchor access', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
+});

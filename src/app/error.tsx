@@ -9,7 +9,7 @@ type ErrorPageProps = {
 
 export default function ErrorPage({ reset }: ErrorPageProps) {
   return (
-    <main className="mx-auto my-12 w-full max-w-4xl px-6 text-[#001C26] sm:my-20">
+    <main id="main-content" tabIndex={-1} className="mx-auto my-12 w-full max-w-4xl px-6 text-[#001C26] sm:my-20">
       <h1 className="text-3xl font-medium leading-tight sm:text-5xl">Something went wrong</h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed">We could not load this page. Try again, or return to the homepage.</p>
       <div className="mt-8 flex flex-wrap items-center gap-6">
