@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { navigateToSection } from './landing/anchor-navigation';
 
 const items = [
-  ["About Us", "/#about"], ["Why Dev Club", "/#why-us"],
+  ["About Us", "/#about"], ["Why MUICT Dev Club", "/#why-us"],
   ["Teams", "/#teams"], ["FAQ", "/#faqs"],
 ];
 const action = { bg: "club.ink", color: "white", border: "2px solid", borderColor: "club.ink", px: 6, py: 3, rounded: "square", _hover: { bg: "white", color: "black" } };
@@ -31,8 +31,8 @@ export default function Navigation() {
     <Box as="nav" aria-label="Main navigation" position="sticky" top="0" zIndex="20" bg="bg" color="fg" onKeyDown={escape} borderBottomWidth="1px" borderColor="border">
       <Collapsible.Root ids={{ content: "mobile-navigation" }} open={open} onOpenChange={event => setOpen(event.open)}>
         <Flex h="80px" align="center" justify="space-between" px={{ base: 6, xl: 12 }} gap="6">
-          <Link href="/" aria-label="Dev Club home" flexShrink="0" onClick={close}>
-            <Image width={60} height={60} src="/logo_k.svg" alt="Dev Club" />
+          <Link href="/" aria-label="MUICT Dev Club home" flexShrink="0" onClick={close}>
+            <Image width={60} height={60} src="/logo_k.svg" alt="MUICT Dev Club" />
           </Link>
           <Flex align="center" gap={{ base: 6, xl: 8 }} display={{ base: "none", lg: "flex" }}>
             <Stack direction="row" gap={{ base: 4, xl: 8 }} align="center">

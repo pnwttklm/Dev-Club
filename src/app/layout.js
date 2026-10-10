@@ -5,8 +5,8 @@ import Footer from '../components/footer'
 import { bodyFont } from './fonts';
 
 export const metadata = {
-  title: 'Dev Club',
-  description: 'Dev Club, ICT Mahidol',
+  title: 'MUICT Dev Club',
+  description: 'MUICT Dev Club, Faculty of ICT, Mahidol University',
 }
 
 export default function RootLayout({ children }) {
@@ -20,16 +20,19 @@ export default function RootLayout({ children }) {
         href="/apple-icon.ico"
       />
       </head>
-      <body className={`${bodyFont.className} ${bodyFont.variable}`}>
+      <body className={`${bodyFont.className} ${bodyFont.variable} min-h-screen flex flex-col`}>
         <Provider>
-          <a href="#main-content" className="skip-link">Skip to content</a>
-          <Nav/>
-          {children}
-          <Footer/>
+          <div className="flex min-h-screen flex-col">
+            <a href="#main-content" className="skip-link">Skip to content</a>
+            <Nav/>
+            <div className="flex flex-1 flex-col">
+              {children}
+            </div>
+            <Footer/>
+          </div>
         </Provider>
       </body>
     </html>
-    
   )
 }
 

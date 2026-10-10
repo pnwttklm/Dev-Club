@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { documentFont } from '../document-font';
 
-export const metadata = { title: "Privacy Policy | Dev Club ICT Mahidol" };
+export const metadata = { title: "Privacy Policy | MUICT Dev Club" };
 
 export default function privacy() {
 

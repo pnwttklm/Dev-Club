@@ -23,8 +23,6 @@ export default function Location() {
         </a>
         <div className="flex flex-col items-start justify-center">
           <p className="text-2xl sm:text-4xl lg:text-5xl font-normal leading-tight text-white wrap-break-word">
-            Dev Club is currently located at room IT210
-            <br />
             Faculty of ICT, Mahidol University
           </p>
           <a

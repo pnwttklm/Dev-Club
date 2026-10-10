@@ -32,17 +32,17 @@ export default function WhyUs() {
     {
       name: 'ACADEMIC \nGROWTH',
       imgSrc: '/whyUs/ag.svg',
-      des: 'Dev Club often explore topics and technologies that may not be covered in your regular coursework. This can broaden your knowledge and give you a more well-rounded education.',
+      des: 'MUICT Dev Club often explores topics and technologies that may not be covered in your regular coursework. This can broaden your knowledge and give you a more well-rounded education.',
     },
     {
         name: 'EXPANDED \nCOMMUNITY',
         imgSrc: '/whyUs/ec.svg',
-        des: 'Working with peers in Dev Club setting can improve your teamwork and communication skills. Collaboration is an essential skill in both academia and the professional world.',
+        des: 'Working with peers in MUICT Dev Club setting can improve your teamwork and communication skills. Collaboration is an essential skill in both academia and the professional world.',
       },
       {
         name: 'ENHANCED \nEXPERIENCE',
         imgSrc: '/whyUs/ee.svg',
-        des: 'Being part of a Dev Club often involves working on real projects and practical coding tasks. This hands-on experience can deepen your understanding of programming languages and concepts.',
+        des: 'Being part of MUICT Dev Club often involves working on real projects and practical coding tasks. This hands-on experience can deepen your understanding of programming languages and concepts.',
       },
       
 ]
