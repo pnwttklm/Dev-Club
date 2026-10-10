@@ -101,7 +101,7 @@ export function BenefitsScene({ children }: { children: ReactNode }) {
     let previousWidth = grid.offsetWidth, previousHeight = grid.offsetHeight, previousViewport = innerHeight;
     const refit = contextSafe!(() => {
       clearTimeout(timeout);
-      timeout = setTimeout(() => preserveViewportPosition(() => { gsap.matchMediaRefresh(); ScrollTrigger.refresh(); }), 120);
+      timeout = setTimeout(() => preserveViewportPosition(() => { gsap.matchMediaRefresh(); ScrollTrigger.refresh(); }, true), 120);
     });
     const observer = new ResizeObserver(() => {
       if (grid.offsetWidth !== previousWidth || grid.offsetHeight !== previousHeight) {
