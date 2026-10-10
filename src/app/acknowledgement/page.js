@@ -1,4 +1,4 @@
-import { documentFont } from '../fonts';
+import { documentFont } from '../document-font';
 export const metadata = { title: "Acknowledgement | Dev Club ICT Mahidol" };
 
 export default function Acknowledgement() {

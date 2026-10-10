@@ -10,7 +10,7 @@ export default function Location() {
           href="https://www.ict.mahidol.ac.th/en/contact-us/"
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full overflow-hidden border border-white/20 bg-black transition-opacity hover:opacity-90"
+          className="location-link block w-full overflow-hidden border border-white/20 bg-black transition-opacity hover:opacity-90"
           aria-label="Faculty of ICT Mahidol University Contact Us"
         >
           <Image
@@ -31,7 +31,7 @@ export default function Location() {
             href="https://maps.app.goo.gl/QgykA6nfCLHqc7Mh6"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 sm:mt-8 inline-flex items-center gap-2 border-2 border-white bg-white px-5 py-3 sm:px-6 sm:py-4 text-lg sm:text-xl font-medium text-black transition-colors hover:bg-black hover:text-white"
+            className="location-link mt-6 sm:mt-8 inline-flex items-center gap-2 border-2 border-white bg-white px-5 py-3 sm:px-6 sm:py-4 text-lg sm:text-xl font-medium text-black transition-colors hover:bg-black hover:text-white"
           >
             <BsArrowUpRight className="text-xl" />
             <span>Open in Map</span>

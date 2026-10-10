@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { documentFont } from '../fonts';
+import { documentFont } from '../document-font';
 
 export const metadata = { title: "Privacy Policy | Dev Club ICT Mahidol" };
 

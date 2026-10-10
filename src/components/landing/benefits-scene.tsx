@@ -47,11 +47,16 @@ export function BenefitsScene({ children }: { children: ReactNode }) {
       const update = (progress: number) => {
         const overview = progress >= 0.999;
         const active = overview ? -1 : Math.min(2, Math.floor(progress / 0.3));
+        const reveal = Math.min(1, Math.max(0, (progress - 0.78) / 0.22));
         node.dataset.benefitsMode = overview ? 'overview' : mode;
         node.dataset.benefitActive = String(active);
         cards.forEach((card, index) => {
           card.dataset.benefitSpotlight = String(index === active);
           card.style.zIndex = String(index === active ? 4 : 3 - index);
+          // Keep only deck edges visible behind the current face. Taller copy
+          // must not leak around a shorter face; the same content stays in DOM.
+          card.style.clipPath = desktop || index === active || overview
+            ? '' : `inset(0 0 calc(${(1 - reveal) * 100}% - ${(1 - reveal) * 24}px))`;
         });
       };
       const timeline = gsap.timeline({
@@ -86,7 +91,7 @@ export function BenefitsScene({ children }: { children: ReactNode }) {
         node.dataset.benefitsMode = 'overview';
         node.dataset.benefitsStaging = 'none';
         delete node.dataset.benefitActive;
-        cards.forEach(card => { delete card.dataset.benefitSpotlight; card.style.removeProperty('z-index'); });
+        cards.forEach(card => { delete card.dataset.benefitSpotlight; card.style.removeProperty('z-index'); card.style.removeProperty('clip-path'); });
       };
     }, root);
 

@@ -1,4 +1,4 @@
-import { documentFont } from '../fonts';
+import { documentFont } from '../document-font';
 export const metadata = { title: "Terms of Use | Dev Club ICT Mahidol" };
 
 export default function terms() {

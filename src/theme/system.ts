@@ -37,6 +37,8 @@ const config = defineConfig({
     },
     semanticTokens: {
       colors: {
+        // Chakra's default gray recipe ring falls below 3:1 on the white canvas.
+        gray: { focusRing: { value: '{colors.role.mobile}' } },
         bg: { DEFAULT: { value: "{colors.white}" }, inverted: { value: "{colors.black}" } },
         fg: { DEFAULT: { value: "{colors.black}" }, inverted: { value: "{colors.white}" } },
       },
