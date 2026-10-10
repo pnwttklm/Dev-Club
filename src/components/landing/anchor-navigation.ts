@@ -1,16 +1,19 @@
 type ScrollHandler = (target: HTMLElement, immediate: boolean) => Promise<void>;
 let landingScroll: ScrollHandler | undefined;
-let synchronizeLandingScroll: (() => void) | undefined;
+type ScrollRuntime = { refresh: () => void; synchronize: () => void };
+let landingRuntime: ScrollRuntime | undefined;
+let readingAnchor: { target: HTMLElement; top: number } | undefined;
+let restorationFrame: number | undefined;
 
 export function getNavigationClearance(): number {
   return (document.querySelector('nav')?.getBoundingClientRect().height ?? 80) + 16;
 }
 
-export function registerLandingScroll(handler: ScrollHandler, synchronize?: () => void): () => void {
+export function registerLandingScroll(handler: ScrollHandler, runtime?: ScrollRuntime): () => void {
   landingScroll = handler;
-  synchronizeLandingScroll = synchronize;
+  landingRuntime = runtime;
   return () => {
-    if (landingScroll === handler) { landingScroll = undefined; synchronizeLandingScroll = undefined; }
+    if (landingScroll === handler) { landingScroll = undefined; landingRuntime = undefined; }
   };
 }
 
@@ -28,14 +31,20 @@ export function preserveViewportPosition(change: () => void): void {
       .sort((a, b) => Math.abs(a.rect.top - getNavigationClearance()) - Math.abs(b.rect.top - getNavigationClearance()));
     target = visible[0]?.card ?? target;
   }
-  const top = target?.getBoundingClientRect().top;
+  // Upstream and downstream refits can run in the same frame. Keep the first
+  // reading anchor until both have finished, rather than restoring two poses.
+  if (!readingAnchor && target) readingAnchor = { target, top: target.getBoundingClientRect().top };
   change();
-  if (target && top !== undefined) requestAnimationFrame(() => {
-    if (target.isConnected) {
-      window.scrollTo({ top: scrollY + target.getBoundingClientRect().top - top, behavior: 'instant' });
-      // A queued refresh may run before the browser dispatches this scroll
-      // event. Synchronize its cache now so it cannot restore the old position.
-      synchronizeLandingScroll?.();
+  if (readingAnchor && restorationFrame === undefined) restorationFrame = requestAnimationFrame(() => {
+    const anchor = readingAnchor;
+    readingAnchor = undefined;
+    restorationFrame = undefined;
+    if (anchor?.target.isConnected) {
+      // Finish any reverted pin measurements before computing the final pose.
+      // A queued refresh must subsequently record this restored scroll value.
+      landingRuntime?.refresh();
+      window.scrollTo({ top: scrollY + anchor.target.getBoundingClientRect().top - anchor.top, behavior: 'instant' });
+      landingRuntime?.synchronize();
     }
   });
 }

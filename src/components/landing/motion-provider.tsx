@@ -66,9 +66,13 @@ export function LandingMotionProvider({ children }: { children: ReactNode }) {
         completions.add(finish);
         lenis!.scrollTo(top, { immediate, force: true, onComplete: finish });
       });
-    }, () => {
-      lenis?.scrollTo(window.scrollY, { immediate: true, force: true });
-      ScrollTrigger.update();
+    }, {
+      refresh: () => { ScrollTrigger.refresh(); lenis?.resize(); },
+      synchronize: () => {
+        ScrollTrigger.getScrollFunc(window)(window.scrollY);
+        lenis?.scrollTo(window.scrollY, { immediate: true, force: true });
+        ScrollTrigger.update();
+      },
     });
     const refresh = () => {
       cancelAnimationFrame(frame);
