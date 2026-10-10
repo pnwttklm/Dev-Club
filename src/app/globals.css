@@ -20,6 +20,9 @@ body {
 } 
 
 html { scroll-behavior: smooth; }
+html[data-landing-scroll], html.lenis { scroll-behavior: auto; }
+.motion-toggle { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; margin-top: 24px; border: 1px solid currentColor; font-size: 14px; }
+.motion-toggle:hover { background: var(--chakra-colors-club-ink); color: white; }
 main section[id] { scroll-margin-top: 96px; }
 .landing-section { padding: 48px 24px; max-width: 1920px; margin: 0 auto; }
 .landing-section h2 { font-size: 1.5rem; line-height: 1.25; text-align: center; }

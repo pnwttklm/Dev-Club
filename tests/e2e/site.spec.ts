@@ -66,7 +66,20 @@ test('landing semantics and navigation destinations', async ({ page }) => {
   await nav.getByRole('link', { name: 'Why Dev Club' }).click();
   await expect.poll(() => page.locator('#why-us').evaluate(el => Math.round(el.getBoundingClientRect().top))).toBeLessThanOrEqual(100);
   expect(await page.locator('#why-us').evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(80);
-  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('smooth');
+  await expect(page.locator('[data-motion-state="active"]')).toHaveCount(1);
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.mouse.move(100, 200);
+  const samplesPromise = page.evaluate(async () => {
+    const samples: number[] = [];
+    for (let n = 0; n < 40; n++) {
+      await new Promise(requestAnimationFrame);
+      samples.push(scrollY);
+    }
+    return samples;
+  });
+  await page.mouse.wheel(0, 500);
+  const samples = await samplesPromise;
+  expect(new Set(samples.map(Math.round)).size).toBeGreaterThan(8);
 });
 
 for (const width of [320, 390, 768, 1024, 1280]) {

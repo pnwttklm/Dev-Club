@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SimpleGrid } from "@chakra-ui/react";
+import { MotionToggle } from '../landing/motion-provider';
 
 export default function Header() {
   return (
@@ -9,6 +10,7 @@ export default function Header() {
         <div>
           <h1>Did someone tell you that your knowledge cannot be implemented in real-world problems? <em>They were wrong!</em></h1>
           <p className="mt-8 text-xl leading-relaxed">At Dev Club ICT Mahidol, we believe that knowledge can be applied to real-world problems. We are a sandbox for everyone to learn, try ideas, and experience working in software development. Alongside developers, we welcome other important roles such as Quality Assurance, UX/UI Design, and Art. We cannot wait to see you here.</p>
+          <MotionToggle />
         </div>
       </SimpleGrid>
     </section>

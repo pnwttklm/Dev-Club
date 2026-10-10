@@ -4,6 +4,7 @@ import { Box, Collapsible, Flex, IconButton, Link, Stack } from "@chakra-ui/reac
 import { BsListNested, BsXLg } from "react-icons/bs";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { navigateToSection } from './landing/anchor-navigation';
 
 const items = [
   ["About Us", "/#about"], ["Why Dev Club", "/#why-us"],
@@ -15,6 +16,12 @@ export default function Navigation() {
   const [open, setOpen] = useState(false);
   const trigger = useRef(null);
   function close() { setOpen(false); }
+  function section(event, href) {
+    close();
+    if (location.pathname !== '/' || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    event.preventDefault();
+    requestAnimationFrame(() => void navigateToSection(href.split('#')[1]));
+  }
   function escape(event) {
     if (event.key === "Escape" && open) { close(); trigger.current?.focus(); }
   }
@@ -27,7 +34,7 @@ export default function Navigation() {
           </Link>
           <Flex align="center" gap={{ base: 6, xl: 8 }} display={{ base: "none", lg: "flex" }}>
             <Stack direction="row" gap={{ base: 4, xl: 8 }} align="center">
-              {items.map(([label, href]) => <Link key={href} href={href} minH="44px" px="2" fontSize="lg" color="fg" _hover={{ textDecoration: "underline", fontStyle: "italic" }}>{label}</Link>)}
+              {items.map(([label, href]) => <Link key={href} href={href} onClick={event => section(event, href)} minH="44px" px="2" fontSize="lg" color="fg" _hover={{ textDecoration: "underline", fontStyle: "italic" }}>{label}</Link>)}
             </Stack>
             <Link href="/recruit" {...action}>Joining information</Link>
           </Flex>
@@ -35,9 +42,9 @@ export default function Navigation() {
             {open ? <BsXLg /> : <BsListNested />}
           </IconButton>
         </Flex>
-        <Collapsible.Content>
+        <Collapsible.Content position="absolute" top="100%" left="0" w="full" boxShadow="sm">
           <Stack display={{ base: "flex", lg: "none" }} px="6" py="4" gap="2" bg="bg">
-            {items.map(([label, href]) => <Link key={href} href={href} minH="44px" fontSize="lg" onClick={close}>{label}</Link>)}
+            {items.map(([label, href]) => <Link key={href} href={href} minH="44px" fontSize="lg" onClick={event => section(event, href)}>{label}</Link>)}
             <Link href="/recruit" onClick={close} {...action}>Joining information</Link>
           </Stack>
         </Collapsible.Content>
