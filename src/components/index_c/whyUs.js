@@ -4,7 +4,14 @@ import { BenefitsScene } from '../landing/benefits-scene';
 
 export default function WhyUs() {
   return (
-    <BenefitsScene><h2>Why Us?</h2><SimpleGrid data-benefits-grid columns={{ base: 1, md: 2, lg: 3 }} gap="10" mt="10">
+    <BenefitsScene><h2>Why Us?</h2><SimpleGrid
+      data-benefits-grid columns={{ base: 1, md: 2, lg: 3 }}
+      w="full" maxW="80rem" mx="auto" justifyItems="center" gap="10" mt="10"
+      css={{ '& > [data-benefit-card]:last-child': {
+        gridColumn: { mdOnly: '1 / -1' },
+        width: { mdOnly: 'calc((100% - var(--chakra-spacing-10)) / 2)' },
+      } }}
+    >
       {qElement.map(benefit => (
         <article key={benefit.name} data-benefit-card>
           <Image src={benefit.imgSrc} width={500} height={500} alt="" className="h-[260px] w-full object-contain" />
