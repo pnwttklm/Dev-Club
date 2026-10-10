@@ -25,10 +25,12 @@ export default function Navigation() {
           <Link href="/" aria-label="Dev Club home" flexShrink="0" onClick={close}>
             <Image width={60} height={60} src="/logo_k.svg" alt="Dev Club" />
           </Link>
-          <Stack direction="row" gap={{ base: 4, xl: 8 }} align="center" display={{ base: "none", lg: "flex" }}>
-            {items.map(([label, href]) => <Link key={href} href={href} minH="44px" px="2" fontSize="lg" color="fg" _hover={{ textDecoration: "underline", fontStyle: "italic" }}>{label}</Link>)}
-          </Stack>
-          <Link href="/recruit" display={{ base: "none", lg: "flex" }} {...action}>Joining information</Link>
+          <Flex align="center" gap={{ base: 6, xl: 8 }} display={{ base: "none", lg: "flex" }}>
+            <Stack direction="row" gap={{ base: 4, xl: 8 }} align="center">
+              {items.map(([label, href]) => <Link key={href} href={href} minH="44px" px="2" fontSize="lg" color="fg" _hover={{ textDecoration: "underline", fontStyle: "italic" }}>{label}</Link>)}
+            </Stack>
+            <Link href="/recruit" {...action}>Joining information</Link>
+          </Flex>
           <IconButton ref={trigger} onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-navigation" display={{ base: "flex", lg: "none" }} aria-label="Toggle Navigation" variant="ghost" color="fg" size="lg" rounded="square">
             {open ? <BsXLg /> : <BsListNested />}
           </IconButton>
