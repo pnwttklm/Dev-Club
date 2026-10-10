@@ -47,6 +47,10 @@ AGENTS.md
 docs/*
 .superpowers/*
 tests/*
-test-results
+tests/
+test-results/
+playwright-report/
+playwright*.config.ts
+reports/
 .next-motion
 test

@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src tests playwright.config.ts",
-    "test:e2e": "playwright test",
+    "lint": "eslint src",
     "typegen": "chakra typegen ./src/theme/system.ts"
   },
   "dependencies": {
@@ -25,7 +24,6 @@
   "devDependencies": {
     "@chakra-ui/cli": "^3.37.0",
     "@eslint/eslintrc": "^3.3.7",
-    "@playwright/test": "^1.64.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
