@@ -28,7 +28,8 @@ main section[id] { scroll-margin-top: 96px; }
 .landing-section h2 { font-size: 1.5rem; line-height: 1.25; text-align: center; }
 .hero h1 { font-size: clamp(2rem, 3.6vw, 3.75rem); line-height: 1.1; font-weight: 400; overflow-wrap: break-word; }
 .hero h1 em { display: block; margin-top: 16px; }
-.terminal-headline { display: block; }
+.terminal-headline { display: block; position: relative; }
+[data-typing-state="typing"] [data-terminal-cursor] { position: absolute; pointer-events: none; }
 [data-terminal-cursor] { display: inline-block; width: 0.7em; font-style: normal; }
 [data-cursor-blinking="true"] { animation: terminal-blink 1s steps(2, start) infinite; }
 @keyframes terminal-blink { to { opacity: 0; } }
