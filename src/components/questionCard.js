@@ -8,7 +8,7 @@ function QuestionCard({ value, question, answer }) {
   return (
     <Accordion.Item value={value}>
       <h3>
-        <Accordion.ItemTrigger py={5} color="fg" fontWeight="medium" fontSize={{ base: "md", sm: "xl", md: "2xl" }}>
+        <Accordion.ItemTrigger py={5} color="fg" focusRingColor="role.mobile" _focusVisible={{ outline: "2px solid", outlineColor: "role.mobile", outlineOffset: "4px" }} fontWeight="medium" fontSize={{ base: "md", sm: "xl", md: "2xl" }}>
           <span className="flex-1 text-left">{question}</span>
           <Accordion.ItemIndicator rotate={{ _open: "-135deg" }} fontSize={{ base: "xl", md: "3xl" }}>
             <BsPlusCircle />

@@ -2,8 +2,7 @@ import './globals.css'
 import { Provider } from "../components/ui/provider";
 import Nav from '../components/nav'
 import Footer from '../components/footer'
-import { Poppins } from 'next/font/google';
-const poppins = Poppins({ variable: "--font-poppins", subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
+import { bodyFont } from './fonts';
 
 export const metadata = {
   title: 'Dev Club',
@@ -21,7 +20,7 @@ export default function RootLayout({ children }) {
         href="/apple-icon.ico"
       />
       </head>
-      <body className={`${poppins.className} ${poppins.variable}`}>
+      <body className={`${bodyFont.className} ${bodyFont.variable}`}>
         <Provider>
           <a href="#main-content" className="skip-link">Skip to content</a>
           <Nav/>
