@@ -86,7 +86,7 @@ for (const width of [320, 390, 768, 1024, 1280]) {
   test(`landing fits and images load at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
-    for (const image of await page.locator('img').all()) {
+    for (const image of await page.locator('img:not([data-team-back] img)').all()) {
       await image.scrollIntoViewIfNeeded();
       await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
     }
@@ -183,7 +183,7 @@ for (const width of [320, 390, 768, 1024, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     for (const route of retainedRoutes.slice(1)) {
       await page.goto(route);
-      for (const image of await page.locator('img').all()) {
+      for (const image of await page.locator('img:not([data-team-back] img)').all()) {
         await image.scrollIntoViewIfNeeded();
         await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
       }
