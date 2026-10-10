@@ -151,7 +151,7 @@ export function TeamsScene({ children }: { children: ReactNode }) {
               scrollTrigger: {
                 id: 'landing-teams', refreshPriority: 1, trigger: node, pin: node,
                 start: () => `top ${pinTop}`,
-                end: () => `+=${innerHeight * (mobile ? .68 : .85)}`,
+                end: () => `+=${innerHeight * (mobile ? 1.2 : .85)}`,
                 scrub: true, anticipatePin: 0,
                 onUpdate: self => face(self.progress),
                 onRefresh: self => {

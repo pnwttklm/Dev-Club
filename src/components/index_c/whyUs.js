@@ -6,17 +6,22 @@ export default function WhyUs() {
   return (
     <BenefitsScene><h2>Why Us?</h2><SimpleGrid
       data-benefits-grid columns={{ base: 1, md: 2, lg: 3 }}
-      w="full" maxW="80rem" mx="auto" justifyItems="center" gap="10" mt="10"
+      w="full" maxW="88rem" mx="auto" gap="10" mt="10"
       css={{ '& > [data-benefit-card]:last-child': {
         gridColumn: { mdOnly: '1 / -1' },
         width: { mdOnly: 'calc((100% - var(--chakra-spacing-10)) / 2)' },
+        justifySelf: { mdOnly: 'center' },
       } }}
     >
       {qElement.map(benefit => (
-        <article key={benefit.name} data-benefit-card>
-          <Image src={benefit.imgSrc} width={500} height={500} alt="" className="h-[260px] w-full object-contain" />
-          <h3 className="mt-6 text-3xl leading-tight">{benefit.name.replace('\n', ' ')}</h3>
-          <p className="mt-4 text-xl leading-relaxed">{benefit.des}</p>
+        <article key={benefit.name} data-benefit-card className="p-4 lg:p-6">
+          <Image src={benefit.imgSrc} width={500} height={500} alt="" className="h-[280px] lg:h-[320px] w-full object-contain" />
+          <h3 className="mt-8 text-3xl lg:text-4xl leading-tight font-normal text-left">
+            {benefit.name.split('\n').map((line, i) => (
+              <span key={i} className="block">{line}</span>
+            ))}
+          </h3>
+          <p className="mt-6 text-lg lg:text-xl leading-relaxed text-left">{benefit.des}</p>
         </article>
       ))}
     </SimpleGrid></BenefitsScene>

@@ -34,7 +34,7 @@ main section[id] { scroll-margin-top: 96px; }
 [data-cursor-blinking="true"] { animation: terminal-blink 1s steps(2, start) infinite; }
 @keyframes terminal-blink { to { opacity: 0; } }
 .benefits-scene { position: relative; width: 100%; }
-[data-benefit-card] { position: relative; width: 100%; max-width: 24rem; min-width: 0; overflow-wrap: anywhere; background: var(--chakra-colors-bg, white); }
+[data-benefit-card] { position: relative; width: 100%; min-width: 0; overflow-wrap: anywhere; background: var(--chakra-colors-bg, white); }
 [data-benefit-card]::before { content: ''; display: block; height: 3px; background: var(--chakra-colors-role-mobile); opacity: 0; position: absolute; top: -16px; left: 0; right: 0; transition: opacity 180ms ease-out; }
 [data-benefit-spotlight="true"]::before { opacity: 1; }
 @media (hover: hover) and (pointer: fine) { [data-benefit-card]:hover::before { opacity: 1; } }
