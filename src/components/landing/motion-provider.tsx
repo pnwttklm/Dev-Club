@@ -41,7 +41,7 @@ export function LandingMotionProvider({ children }: { children: ReactNode }) {
     };
     try {
       if (enabled) {
-        lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false, autoRaf: false });
+        lenis = new Lenis({ lerp: 0.22, smoothWheel: true, syncTouch: false, autoRaf: false });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.lagSmoothing(0);
         visibility();
