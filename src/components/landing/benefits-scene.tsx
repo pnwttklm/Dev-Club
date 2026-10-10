@@ -66,7 +66,9 @@ export function BenefitsScene({ children }: { children: ReactNode }) {
           // upstream pin spacing first, regardless of creation order.
           id: 'landing-benefits', refreshPriority: 2, trigger: node, pin: node, start: () => `top ${getNavigationClearance()}`,
           end: () => `+=${(innerHeight - getNavigationClearance()) * (desktop ? 1.1 : 0.85)}`,
-          scrub: true, invalidateOnRefresh: true, anticipatePin: 1,
+          // Velocity anticipation can project a rapid downstream reverse jump
+          // back into this upstream pin while Teams is already on screen.
+          scrub: true, invalidateOnRefresh: true, anticipatePin: 0,
           onUpdate: self => update(self.progress),
           onRefresh: self => {
             node.dataset.sceneStart = String(self.start);

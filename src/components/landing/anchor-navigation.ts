@@ -35,8 +35,7 @@ export function preserveViewportPosition(change: () => void, preserveDownstreamP
       .sort((a, b) => Number(a.card.dataset.teamFace === 'moving') - Number(b.card.dataset.teamFace === 'moving')
         || Math.abs(a.rect.top - getNavigationClearance()) - Math.abs(b.rect.top - getNavigationClearance()));
     const card = visible[0]?.card;
-    // A Poker face scales as it deals. Preserving its top would move the
-    // paragraph when that scale disappears; retain visible copy itself.
+    // Keep the reader's visible paragraph stable when scene geometry changes.
     target = card ? [...card.querySelectorAll<HTMLElement>('[data-team-copy] p'), ...card.querySelectorAll<HTMLElement>('[data-team-copy] h3')]
       .find(copy => { const rect = copy.getBoundingClientRect(); return rect.bottom > getNavigationClearance() && rect.top < innerHeight; }) ?? card : target;
   }

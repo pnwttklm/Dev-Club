@@ -4,9 +4,9 @@ import { TeamsScene } from '../landing/teams-scene';
 
 export default function Teams() {
   return (
-    <TeamsScene><h2>Teams</h2><SimpleGrid data-teams-grid columns={{ base: 1, md: 2, lg: 3, "2xl": 5 }} gap="6" mt="10">
+    <TeamsScene><h2>Teams</h2><SimpleGrid data-teams-grid columns={{ base: 1, md: 2, lg: 3, "2xl": 5 }} gridAutoRows="1fr" gap="6" mt="10">
       {qElement.map(team => (
-        <Box as="article" key={team.name} data-team-card={team.name} style={{ '--team-accent': `var(--chakra-colors-${team.color.replace('.', '-')})` }} bg="bg.inverted" color="fg.inverted" p={{ base: '4', '2xl': '3' }} minW="0" borderRadius="16px" border="2px solid var(--team-accent)">
+        <Box as="article" key={team.name} data-team-card={team.name} style={{ '--team-accent': `var(--chakra-colors-${team.color.replace('.', '-')})` }} bg="bg.inverted" color="fg.inverted" p="6" minW="0" borderRadius="16px" border="2px solid var(--team-accent)">
           <div data-team-back aria-hidden="true">
             <div data-team-back-art><Image src="/logo_ww.svg" width={160} height={75} loading="eager" alt="" /><span>{team.name}</span></div>
           </div>

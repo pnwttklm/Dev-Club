@@ -15,7 +15,7 @@ export default function Footer() {
             Salaya, Nakhon Pathom 73170<br />
             THAILAND
           </p>
-          <div className="mt-4 flex flex-wrap gap-4">
+          <div className="mt-4 flex flex-wrap gap-4 [&>a]:min-w-0 [&>a]:max-w-full [&>a]:wrap-anywhere">
             <Link href="/privacy-policy" className="underline underline-offset-4 hover:opacity-80">Privacy Policy</Link>
             <Link href="/terms" className="underline underline-offset-4 hover:opacity-80">Terms of Use</Link>
             <Link href="/acknowledgement" className="underline underline-offset-4 hover:opacity-80">Acknowledgement</Link>
