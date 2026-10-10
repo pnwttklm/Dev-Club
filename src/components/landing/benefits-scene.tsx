@@ -17,18 +17,29 @@ export function BenefitsScene({ children }: { children: ReactNode }) {
     node.dataset.benefitsStaging = 'entrance';
     let live = true;
     const pending = cards.filter(card => !revealed.current.has(card));
-    // The default content stays visible. Only a small rise and soft fade
-    // introduce nearby siblings; distant rows enter when reached naturally.
+    // Copy stays opaque. Illustration emphasis leads a small text stagger;
+    // distant rows enter when reached naturally, without changing layout.
     if (pending.length) {
-      gsap.set(pending, { y: 16, opacity: .9 });
+      gsap.set(pending, { y: 16 });
+      gsap.set(pending.map(card => card.querySelector('img')), { y: 8, scale: .96, opacity: .8 });
+      gsap.set(pending.flatMap(card => [...card.querySelectorAll('h3, p')]), { y: 6 });
       ScrollTrigger.batch(pending, {
         start: 'top 90%', once: true, interval: .08,
         onEnter: contextSafe!((batch: Element[]) => {
           if (!live) return;
           batch.forEach(card => revealed.current.add(card));
-          gsap.to(batch, {
-            y: 0, opacity: 1, duration: .5, stagger: .08,
-            ease: 'expo.out', overwrite: 'auto', clearProps: 'transform,opacity',
+          const timeline = gsap.timeline({
+            defaults: { ease: 'expo.out', overwrite: 'auto' },
+          });
+          batch.forEach((card, index) => {
+            const start = index * .08;
+            timeline.to(card, { y: 0, duration: .5, clearProps: 'transform' }, start);
+            timeline.to(card.querySelector('img'), {
+              y: 0, scale: 1, opacity: 1, duration: .65, clearProps: 'transform,opacity',
+            }, start);
+            timeline.to(card.querySelectorAll('h3, p'), {
+              y: 0, duration: .4, stagger: .06, clearProps: 'transform',
+            }, start + .1);
           });
         }),
       });
