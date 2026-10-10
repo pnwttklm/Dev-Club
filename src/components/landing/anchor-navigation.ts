@@ -13,7 +13,17 @@ export function registerLandingScroll(handler: ScrollHandler): () => void {
 // Preference/layout changes may remove pin spacing above the current view.
 export function preserveViewportPosition(change: () => void): void {
   const hit = document.elementFromPoint(innerWidth / 2, getNavigationClearance() + 8);
-  const target = hit?.closest<HTMLElement>('[data-benefits-mode], section[id]');
+  let target = hit?.closest<HTMLElement>('[data-benefits-mode], section[id]');
+  if (target?.id === 'teams') {
+    // The section's top cannot preserve a paragraph while a deck card returns
+    // to its ordinary grid slot. Anchor an exposed face instead.
+    const visible = [...target.querySelectorAll<HTMLElement>('[data-team-card]')]
+      .filter(card => card.dataset.teamFace !== 'back')
+      .map(card => ({ card, rect: card.getBoundingClientRect() }))
+      .filter(({ rect }) => rect.bottom > getNavigationClearance() && rect.top < innerHeight)
+      .sort((a, b) => Math.abs(a.rect.top - getNavigationClearance()) - Math.abs(b.rect.top - getNavigationClearance()));
+    target = visible[0]?.card ?? target;
+  }
   const top = target?.getBoundingClientRect().top;
   change();
   if (target && top !== undefined) requestAnimationFrame(() => {

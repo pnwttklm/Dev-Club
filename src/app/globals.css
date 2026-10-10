@@ -42,7 +42,7 @@ main section[id] { scroll-margin-top: 96px; }
 [data-team-copy] { display: flow-root; }
 .team-illustration { height: 120px; }
 [data-team-card] { min-height: var(--team-deck-height, auto); }
-[data-team-back] { display: none; position: absolute; inset: 0; z-index: 2; background: black; border: 2px solid var(--team-accent); pointer-events: none; }
+[data-team-back] { display: none; position: absolute; inset: 0; z-index: 2; background: var(--chakra-colors-bg-inverted); border: 2px solid var(--team-accent); pointer-events: none; }
 [data-team-face="back"] [data-team-back] { display: block; }
 @media (min-width: 768px) { .team-illustration { height: 200px; } }
 [data-team-card]::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--team-accent); box-shadow: inset 0 0 20px var(--team-accent); opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
