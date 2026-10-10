@@ -11,7 +11,7 @@ The local Impeccable detector returned **zero primary findings and two advisorie
 | Dimension | Before | After | Evidence |
 |---|---:|---:|---|
 | Accessibility | 3 | 4 | Keyboard rings meet 3:1; readable single headings; pause and live OS preference support; axe reports no violations on 320, 390 and 1440px profiles. |
-| Performance | 2 | 3 | First Load JS falls from 492kB to 189,546 bytes; only two font files download; bounded transform/opacity effects. One desktop frame outlier remains in the measurement. |
+| Performance | 2 | 3 | First Load JS falls from 492kB to 189,549 bytes; only two font files download; bounded transform/opacity effects. One desktop frame outlier remains in the measurement. |
 | Theming | 4 | 4 | Existing role tokens, shared blue focus token and intentional light-only presentation remain coherent. |
 | Responsive design | 3 | 4 | Nine profiles, including 320px and short screens, show no overflow or targets below 44px; synthesized native touch scrolling works. |
 | Implementation integrity | 3 | 4 | All five baseline findings addressed; design references match the implementation; detector advisories verified in context. |
@@ -33,7 +33,7 @@ The first visual pass exposed taller mobile deck copy leaking around a shorter a
 
 ## Motion and accessibility verification
 
-- Lenis uses one GSAP ticker, wheel interpolation of 0.1 and native touch scrolling. ScrollTrigger and React contexts clean up on route changes. Anchors retain hrefs, modified-click behavior, target focus, initial hashes and browser history.
+- Lenis uses one GSAP ticker, wheel interpolation of 0.22 and native touch scrolling. Concurrent user commit `bd5123f` tuned the desktop/mobile pin spans to 1.1/0.85 usable viewport heights; the final suite and targeted performance probes include that tuning. ScrollTrigger and React contexts clean up on route changes. Anchors retain hrefs, modified-click behavior, target focus, initial hashes and browser history.
 - Hero typing preserves full character geometry and immediately exposes one complete accessible heading. Its persistent `_` cursor stops blinking offscreen, in a genuinely minimized Chrome window, when paused, and with reduced motion. Geometry checks at 320, 390 and 1280px allow at most 1px displacement.
 - Benefits use desktop pinned illustration emphasis, a short mobile deck, then the native one/two/three-column grid. Short screens and enlarged text retain ordinary reading flow. Preference changes remove pin spacing while preserving the section in view.
 - Teams reveal over 0.45s with 0.08s stagger and at most 24px translation. Existing role colors drive bounded hover glows; coarse-pointer center selection highlights at most one card. Completed entrances are remembered during the session.
@@ -42,13 +42,13 @@ The first visual pass exposed taller mobile deck copy leaking around a shorter a
 
 ## Production and performance evidence
 
-The final `npm run test:e2e` closure passed **53/53 tests in 2.3 minutes**, including the new deck overlap regression, all existing site/document tests and all motion regressions. Its web server ran a fresh `npm run build`, which compiled, type-checked and generated all 18 routes. `npm run lint` and `npx tsc --noEmit` also passed. The earlier 52/52 production acceptance and focused red/green checks are retained as supporting evidence.
+The final `npm run test:e2e` closure passed **55/55 tests in 2.3 minutes**, including the deck overlap, short-height nested menu scrolling, synchronous destination focus, all existing site/document tests and all motion regressions. Its web server ran a fresh `npm run build`, which compiled, type-checked and generated all 18 routes. `npm run lint` and `npx tsc --noEmit` also passed on the final product source. The earlier 52/52 production acceptance and focused red/green checks are retained as supporting evidence.
 
 | Payload measure | Before | After |
 |---|---:|---:|
-| Next First Load JS | 492kB | 189,546 bytes (about 61.5% smaller) |
-| Route JS portion | — | 58,249 bytes |
-| Homepage-observed JS response bodies, gzip | About 551kB transferred | 249,534 bytes gzip; 253,765 bytes transferred including response overhead |
+| Next First Load JS | 492kB | 189,549 bytes (about 61.5% smaller) |
+| Route JS portion | — | 58,252 bytes |
+| Homepage-observed JS response bodies, gzip | About 551kB transferred | 249,593 bytes gzip; 253,824 bytes transferred including response overhead |
 | Homepage font body bytes | 72,832 | 15,640 (about 78.5% smaller) |
 | Homepage font preloads/downloads | 9 preloads | 2 preloads, 2 downloads |
 
@@ -59,17 +59,27 @@ Warmed production scrolling was measured in Chrome with fonts and images loaded:
 | Input | Frames sampled | Median | p95 | Maximum | Intervals >32ms | Observed long tasks |
 |---|---:|---:|---:|---:|---:|---|
 | Native synthesized touch, 390px | 212 | 16.7ms | 16.7ms | 16.8ms | 0 | None |
-| Desktop wheel, 1280px | 142 | 16.7ms | 16.7ms | 50ms | 1 | One 53ms task |
+| Desktop wheel, 1280px | 142 | 16.7ms | 16.8ms | 49.9ms | 1 | One 56ms task |
 
-The desktop trace includes a 53ms Chromium compositor scheduling task (`ScheduledActionSendBeginMainFrame`). The first pass also had one 50ms frame but no long-task entry. The bounded sample supports smooth normal scrolling, but **does not establish literal zero jank**. No repeated layout thrashing or unbounded blur/shadow animation was found. Physical touch devices, other browser engines and constrained hardware remain unmeasured.
+The current desktop trace includes a 56ms Chromium compositor scheduling task (`ScheduledActionSendBeginMainFrame`). The earlier visual-confirmation sample had one 50ms frame and a 53ms compositor scheduling task; the initial sample had one 50ms frame without a long-task entry. The bounded sample supports smooth normal scrolling, but **does not establish literal zero jank**. No repeated layout thrashing or unbounded blur/shadow animation was found. Physical touch devices, other browser engines and constrained hardware remain unmeasured.
 
 ## Evidence and repeatability
 
 - Baseline raw results: `/tmp/dev-club-audit-2026-10-10/results.json` and `confirm.json`. The former historical report is absent from the current checkout; it was not recreated or changed.
 - Current detector findings: `/tmp/dev-club-motion-audit-2026-10-10/detector.json`.
-- Final production audit: `/tmp/dev-club-motion-audit-2026-10-10/confirmation/results.json` and `bundle-final.json` in its parent directory.
+- Visual-confirmation audit: `/tmp/dev-club-motion-audit-2026-10-10/confirmation/results.json`. Final reviewed-build runtime/network/performance evidence: `reviewed/results.json` and `bundle-reviewed.json` under `/tmp/dev-club-motion-audit-2026-10-10`; final navigation detector returned an empty array in `navigation-detector-final.json`.
 - Desktop/mobile hero, three benefit phases, restored overview, team glow, short-view and 320px reduced-motion screenshots are in the confirmation directory. `confirmed-scenes.jpg` and `static-strips.jpg` collect the inspected captures.
-- Frame traces: `confirmation/scroll-1280-trace.json` and `confirmation/scroll-390-trace.json` under the same evidence directory.
+- Current frame traces: `reviewed/scroll-1280-trace.json` and `reviewed/scroll-390-trace.json` under the same evidence directory.
 - Regression coverage: `tests/e2e/landing-motion.spec.ts`, its shared helper and existing `tests/e2e/site.spec.ts`. Tests/design references remain local under the repository's existing ignore policy; task-owned product files and this report are committed explicitly.
+
+## Independent review and fix disposition
+
+A fresh gpt-6-astra reviewer examined the implementation range `afb93fc..7a2c518`, spec, plan, rulings, tests, source cleanup and audit evidence, with targeted read-only Chrome probes. It found one Important issue: the absolute mobile menu could hide FAQ/joining destinations below short viewports. The failing wheel regression reproduced it. The menu now has a viewport-bound native scroll area, Lenis exclusion, overscroll containment and focus padding; normal/enlarged-text wheel, touch and keyboard checks pass at 568×320 and 320×568.
+
+The first post-review full-suite run also exposed a deferred destination-focus race in the existing keyboard test. A second failing regression demonstrated the queued frame's late focus handoff. The stable overlay permits synchronous target focus, and all seven anchor checks plus the final 55/55 production suite pass. Both fixes were completed in the permitted fix pass; no second independent review was dispatched.
+
+Two minor test-hardening recommendations are deferred: genuine in-document React route unmount/remount coverage (current route tests use full-document navigation) and explicit delayed/failed-enhancement fault injection. These are evidence limits; no corresponding runtime defect was demonstrated. The reviewer set aside universal zero-jank claims, untested hardware/engines, complete WCAG certification, the existing local-only test/reference policy, unrelated prior changes, and further broad visual polishing. Those decisions and their costs are included in the handoff.
+
+The concurrent two-parameter user tuning was preserved, inspected and exercised by the final suite; design references and the targeted traces above reflect its current values. All required findings are resolved. Supporting red/green logs, final production acceptance and the review disposition are retained in `/tmp/dev-club-motion-audit-2026-10-10/verification/`.
 
 Maintain the static alternatives, scoped lifecycle cleanup, real font faces and role tokens. Future hardware/browser verification should reproduce the warmed scroll scenarios before making stronger performance claims. No additional Impeccable fix command is recommended from this audit.
