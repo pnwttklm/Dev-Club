@@ -42,7 +42,7 @@ The first visual pass exposed taller mobile deck copy leaking around a shorter a
 
 ## Production and performance evidence
 
-The first full `npm run test:e2e` acceptance passed **52/52** tests and ran a fresh `npm run build` through its production web server. Final visual fixes also passed the new deck regression, all four audit-foundation tests, and direct-hash/history/remount checks; a second fresh production build compiled, type-checked and generated all 18 routes. The final full-suite closure is recorded below after execution.
+The final `npm run test:e2e` closure passed **53/53 tests in 2.3 minutes**, including the new deck overlap regression, all existing site/document tests and all motion regressions. Its web server ran a fresh `npm run build`, which compiled, type-checked and generated all 18 routes. `npm run lint` and `npx tsc --noEmit` also passed. The earlier 52/52 production acceptance and focused red/green checks are retained as supporting evidence.
 
 | Payload measure | Before | After |
 |---|---:|---:|
