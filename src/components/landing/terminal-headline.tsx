@@ -79,7 +79,7 @@ export function TerminalHeadline({ sentence, response }: { sentence: string; res
       }
     };
     const timeline = gsap.timeline({ onComplete: finish });
-    timeline.to(main.progress, main.vars).to(reply.progress, reply.vars, '+=0.15');
+    timeline.to(main.progress, main.vars).to(reply.progress, reply.vars, '+=0.9');
     return () => {
       completed.current = true;
       if (cursor) {
