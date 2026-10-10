@@ -20,7 +20,9 @@ export default function Navigation() {
     close();
     if (location.pathname !== '/' || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
     event.preventDefault();
-    requestAnimationFrame(() => void navigateToSection(href.split('#')[1]));
+    // The disclosure overlays the page, so closing it does not change nav
+    // geometry. Hand off focus now; a delayed frame could steal the next key.
+    void navigateToSection(href.split('#')[1]);
   }
   function escape(event) {
     if (event.key === "Escape" && open) { close(); trigger.current?.focus(); }
