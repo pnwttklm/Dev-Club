@@ -22,12 +22,12 @@ export default function RootLayout({ children }) {
       />
       </head>
       <body className={`${poppins.className} ${poppins.variable}`}>
- 	      <Provider>
+        <Provider>
           <a href="#main-content" className="skip-link">Skip to content</a>
           <Nav/>
           {children}
           <Footer/>
-      	</Provider>
+        </Provider>
       </body>
     </html>
     
