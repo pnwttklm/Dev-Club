@@ -42,7 +42,8 @@ export default function Navigation() {
             {open ? <BsXLg /> : <BsListNested />}
           </IconButton>
         </Flex>
-        <Collapsible.Content position="absolute" top="100%" left="0" w="full" boxShadow="sm">
+        <Collapsible.Content position="absolute" top="100%" left="0" w="full" boxShadow="sm"
+          maxH="calc(100dvh - 81px)" overflowY="auto" overscrollBehavior="contain" scrollPaddingY="4" data-lenis-prevent>
           <Stack display={{ base: "flex", lg: "none" }} px="6" py="4" gap="2" bg="bg">
             {items.map(([label, href]) => <Link key={href} href={href} minH="44px" fontSize="lg" onClick={event => section(event, href)}>{label}</Link>)}
             <Link href="/recruit" onClick={close} {...action}>Joining information</Link>
