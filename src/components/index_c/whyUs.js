@@ -1,17 +1,18 @@
 import Image from "next/image";
 import { SimpleGrid } from "@chakra-ui/react";
+import { BenefitsScene } from '../landing/benefits-scene';
 
 export default function WhyUs() {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="10" mt="10">
+    <BenefitsScene><h2>Why Us?</h2><SimpleGrid data-benefits-grid columns={{ base: 1, md: 2, lg: 3 }} gap="10" mt="10">
       {qElement.map(benefit => (
-        <article key={benefit.name}>
+        <article key={benefit.name} data-benefit-card>
           <Image src={benefit.imgSrc} width={500} height={500} alt="" className="h-[260px] w-full object-contain" />
           <h3 className="mt-6 text-3xl leading-tight">{benefit.name.replace('\n', ' ')}</h3>
           <p className="mt-4 text-xl leading-relaxed">{benefit.des}</p>
         </article>
       ))}
-    </SimpleGrid>
+    </SimpleGrid></BenefitsScene>
   );
 }
 

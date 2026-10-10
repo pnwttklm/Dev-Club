@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import Lenis from 'lenis';
 import { gsap, ScrollTrigger } from './gsap';
-import { getNavigationClearance, navigateToSection, registerLandingScroll } from './anchor-navigation';
+import { getNavigationClearance, navigateToSection, preserveViewportPosition, registerLandingScroll } from './anchor-navigation';
 
 type MotionState = { enabled: boolean; paused: boolean; reduced: boolean; ready: boolean; togglePaused: () => void };
 const MotionContext = createContext<MotionState>({ enabled: false, paused: false, reduced: false, ready: false, togglePaused: () => {} });
@@ -21,7 +21,7 @@ export function LandingMotionProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let live = true;
     const media = matchMedia('(prefers-reduced-motion: reduce)');
-    const sync = () => setReduced(media.matches);
+    const sync = () => preserveViewportPosition(() => setReduced(media.matches));
     sync();
     try { setPaused(sessionStorage.getItem(preferenceKey) === 'true'); } catch { /* Private storage still permits local controls. */ }
     media.addEventListener('change', sync);
@@ -117,11 +117,11 @@ export function LandingMotionProvider({ children }: { children: ReactNode }) {
     };
   }, [ready]);
 
-  const togglePaused = () => setPaused(previous => {
+  const togglePaused = () => preserveViewportPosition(() => setPaused(previous => {
     const next = !previous;
     try { sessionStorage.setItem(preferenceKey, String(next)); } catch { /* Local state remains usable. */ }
     return next;
-  });
+  }));
   return <MotionContext.Provider value={{ enabled, paused, reduced, ready, togglePaused }}>
     <div ref={root} data-motion-state={reduced ? 'reduced' : paused ? 'paused' : enabled ? 'active' : 'fallback'}>{children}</div>
   </MotionContext.Provider>;

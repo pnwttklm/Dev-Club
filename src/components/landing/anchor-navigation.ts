@@ -10,6 +10,17 @@ export function registerLandingScroll(handler: ScrollHandler): () => void {
   return () => { if (landingScroll === handler) landingScroll = undefined; };
 }
 
+// Preference/layout changes may remove pin spacing above the current view.
+export function preserveViewportPosition(change: () => void): void {
+  const hit = document.elementFromPoint(innerWidth / 2, getNavigationClearance() + 8);
+  const target = hit?.closest<HTMLElement>('[data-benefits-mode], section[id]');
+  const top = target?.getBoundingClientRect().top;
+  change();
+  if (target && top !== undefined) requestAnimationFrame(() => {
+    if (target.isConnected) window.scrollTo({ top: scrollY + target.getBoundingClientRect().top - top, behavior: 'instant' });
+  });
+}
+
 export async function navigateToSection(id: string, options: {
   history?: 'push' | 'replace' | 'none'; immediate?: boolean; focus?: boolean;
 } = {}): Promise<void> {
