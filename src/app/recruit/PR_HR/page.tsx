@@ -1,5 +1,5 @@
-export default function FW() {
-    return (
-        <meta http-equiv="refresh" content="0;url='https://forms.gle/2dmp2LFVQevHmCoJ9'"></meta>
-    )
+import { redirect } from "next/navigation";
+
+export default function RedirectPage() {
+  redirect("/recruit");
 }

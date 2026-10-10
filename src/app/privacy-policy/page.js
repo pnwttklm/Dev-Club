@@ -1,70 +1,64 @@
-"use client"
-import dynamic from "next/dynamic";
-import React from "react";
+import Link from "next/link";
+import { documentFont } from '../document-font';
 
-import {
-  ListItem,
-  UnorderedList,
-  Divider,
-} from '@chakra-ui/react'
-
-
+export const metadata = { title: "Privacy Policy | MUICT Dev Club" };
 
 export default function privacy() {
-  
+
   return(
-    <>
-    <title>Legal - Privacy Policy</title>
+    <main id="main-content" tabIndex={-1} className={`${documentFont.className} ${documentFont.variable} mx-auto max-w-[75ch] break-words px-6 py-12 text-base leading-7 text-black [&_p]:mb-4 [&_li]:mb-2`}>
+      <h1 className="mb-10 text-3xl font-semibold leading-tight md:text-4xl">Privacy Policy</h1>
+
     <div className="bg-white">
-    
+
       <div>
-      <div id='ENG' className="text-black bg-white p-12 md:p-32 md:mx-64">
-        <h1 className="font-bold text-5xl my-8 md:my-16 text-center">Privacy Policy for Customer</h1>
-        <p>Developer Team, ICT20 President Team, Faculty of Information and Communication Technology, Mahidol University recognizes the importance of the protection of your personal data. This Privacy Policy explains our practices regarding the collection, use or disclosure of personal data including other rights of the Data Subjects in accordance with the Personal Data Protection Laws.</p>
-        
-        <h2 className="font-bold text-2xl my-6">Collection of Personal Data</h2>
+      <section id="ENG" lang="en">
+        <h2 className="mb-6 mt-12 text-2xl font-semibold leading-tight md:text-3xl">Privacy Policy for Customer</h2>
+        <p>Dev Club, Faculty of Information and Communication Technology, Mahidol University recognizes the importance of the protection of your personal data. This Privacy Policy explains our practices regarding the collection, use or disclosure of personal data including other rights of the Data Subjects in accordance with the Personal Data Protection Laws.</p>
+
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Collection of Personal Data</h3>
         <p>
         We will collect your personal data that receive directly from you as following:
-        </p><UnorderedList className='p-6'>
-  <ListItem>Email Address</ListItem>
-  <ListItem>Student ID</ListItem>
-</UnorderedList>
+        </p><ul className="list-disc py-4 pl-6">
+  <li>Email Address</li>
+  <li>Student ID</li>
+</ul>
         <p></p>
 
-        <h2 className="font-bold text-2xl  my-6">Types of Data Collected</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Types of Data Collected</h3>
         <p><b>Contact information</b> such as address, telephone number, e-mail address, etc.</p>
 
-        <h2 className="font-bold text-2xl my-6">Children</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Children</h3>
         <p>If you are under the age of 20 or having legal restrictions, we may collect use or disclose your personal data. We require your parents or guardian to be aware and provide consent to us or allowed by applicable laws. If we become aware that we have collected personal data from children without verification of parental consent, we take steps to remove that information from our servers.</p>
-        
-        <h2 className="font-bold text-2xl my-6">Storage of Data</h2>
+
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Storage of Data</h3>
         <p>We store your personal data as hard copy and soft copy.</p>
         <p>We store your personal data by using the following systems:</p>
-        <UnorderedList className='p-6'>
-  <ListItem>Third-party server service providers outside of Thailand</ListItem>
-</UnorderedList>
+        <ul className="list-disc py-4 pl-6">
+  <li>Third-party server service providers outside of Thailand</li>
+</ul>
 
-        <h2 className="font-bold text-2xl my-6">Use of Data</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Use of Data</h3>
         <p>We use the collected data for various purposes:</p>
-        <UnorderedList className='p-6'>
-          <ListItem>To create and manage accounts</ListItem>
-          <ListItem>To share and manage information within organization</ListItem>
-          <ListItem>To provide after-sales services</ListItem>
-          <ListItem>To comply with our Terms and Conditions</ListItem>
-          <ListItem>To comply with laws, rules, and regulatory authorities</ListItem>
-        </UnorderedList>
+        <ul className="list-disc py-4 pl-6">
+          <li>To create and manage accounts</li>
+          <li>To share and manage information within organization</li>
+          <li>To provide after-sales services</li>
+          <li>To comply with our Terms and Conditions</li>
+          <li>To comply with laws, rules, and regulatory authorities</li>
+        </ul>
 
-        <h2 className="font-bold text-2xl my-6">Disclosure of Personal Data</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Disclosure of Personal Data</h3>
         <p>We may disclose your personal data to the following parties in certain circumstances:</p>
 
 
         <p className='pt-6'><b>Organization</b></p>
         <p>We may disclose your personal data within our organization to provide and develop our products or services. We may combine information internally across the different products or services covered by this Privacy Policy to help us be more relevant and useful to you and others.</p>
 
-        <h2 className="font-bold text-2xl my-6">Data Retention</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Data Retention</h3>
         <p>We will retain your personal data for as long as necessary during the period you are a customer or under relationship with us, or for as long as necessary in connection with the purposes set out in this Privacy Policy, unless law requires or permits a longer retention period. We will erase, destroy or anonymize your personal data when it is no longer necessary or when the period lapses.</p>
 
-        <h2 className="font-bold text-2xl my-6">Data Subject Rights</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Data Subject Rights</h3>
         <p>Subject to the Personal Data Protection Laws thereof, you may exercise any of these rights in the following:</p>
 
         <p className="pt-6"><b>Withdrawal of consent</b>: If you have given consent to us to collect, use or disclose your personal data whether before or after the effective date of the Personal Data Protection Laws, you have the right to withdraw such consent at any time throughout the period your personal data available to us, unless it is restricted by laws or you are still under beneficial contract.</p>
@@ -87,42 +81,42 @@ export default function privacy() {
         <p className="pt-6">You can exercise these rights as the Data Subject by contacting our Data Protection Officer as mentioned below. We will notify the result of your request within 30 days upon receipt of such request. If we deny the request, we will inform you of the reason via SMS, email address, telephone, registered mail (if applicable).</p>
 
 
-        <h2 className="font-bold text-2xl my-6">Advertising and Marketing</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Advertising and Marketing</h3>
 
         <p>We may send certain information or newsletter for the purpose of utilizing your preference via your email. If you no longer want to receive the communications from us, you can contact us through our email.</p>
 
-        <h2 className="font-bold text-2xl my-6">Cookies</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Cookies</h3>
         <p>To enrich and perfect your experience, we use cookies or similar technologies to display personalized content, appropriate advertising and store your preferences on your computer. We use cookies to identify and track visitors, their usage of our website and their website access preferences. If you do not wish to have cookies placed on your computer you should set their browsers to refuse cookies before using our website.</p>
 
-        <h2 className="font-bold text-2xl my-6">Data Security</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Data Security</h3>
         <p>We endeavor to protect your personal data by establishing security measures in accordance with the principles of confidentiality, integrity, and availability to prevent loss, unauthorized or unlawful access, destruction, use, alteration, or disclosure including administrative safeguard, technical safeguard, physical safeguard and access controls.</p>
 
-        <h2 className="font-bold text-2xl my-6">Data Breach Notification</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Data Breach Notification</h3>
         <p>We will notify the Office of the Personal Data Protection Committee without delay and, where feasible, within 72 hours after having become aware of it, unless such personal data breach is unlikely to result in a risk to the rights and freedoms of you. If the personal data breach is likely to result in a high risk to the rights and freedoms of you, we will also notify the personal data breach and the remedial measures to you without delay through our website, SMS, email address, telephone or registered mail (if applicable).</p>
 
-        <h2 className="font-bold text-2xl my-6">Changes to this Privacy Policy</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Changes to this Privacy Policy</h3>
         <p>We may change this Privacy Policy from time to time. Any changes of this Privacy Policy, we encourage you to frequently check on our website.</p>
         <p>This Privacy Policy was last updated and effective on 29th June 2023</p>
 
 
-        <h2 className="font-bold text-2xl my-6">Links to Other Sites</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Links to Other Sites</h3>
         <p>The purpose of this Privacy Policy is to offer products or services and use of our website. Any websites from other domains found on our site is subject to their privacy policy which is not related to us.</p>
 
-        <h2 className="font-bold text-2xl my-6">Contact Information</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">Contact Information</h3>
         <p>If you have any questions about this Privacy Policy or would like to exercise your rights, you can contact us by using the following details:</p>
 
         <p className='pt-6'><b>Data Controller</b></p>
-        <p>Developer Team, ICT20 President Team, Faculty of Information and Communication Technology, Mahidol University</p>
+        <p>Dev Club, Faculty of Information and Communication Technology, Mahidol University</p>
 
         <p>
         Faculty of ICT, Mahidol University, 999 Phutthamonthon Sai 4 Road , Salaya, Phutthamonthon, Nakhon Pathom, 73170
         </p>
 
         <p>poonyawatt.klu@student.mahidol.ac.th</p>
-        <p>https://ict21.ict.mahidol.ac.th</p>
+        <p><Link href="/" className="underline underline-offset-4">Dev Club ICT Mahidol website</Link></p>
         <p>0881060571</p>
         <p className='pt-6'><b>Data Protection Officer</b></p>
-        <p>Developer Team, ICT20 President Team, Faculty of Information and Communication Technology, Mahidol University</p>
+        <p>Dev Club, Faculty of Information and Communication Technology, Mahidol University</p>
 
         <p>
         Faculty of ICT, Mahidol University, 999 Phutthamonthon Sai 4 Road , Salaya, Phutthamonthon, Nakhon Pathom, 73170
@@ -130,58 +124,58 @@ export default function privacy() {
 
         <p>poonyawatt.klu@student.mahidol.ac.th</p>
         <p>0881060571</p>
-      </div>
+      </section>
 
     </div>
 
-    <Divider/>
+    <hr className="my-12 border-black/20" />
 
-    <div id='THA' className="text-black bg-white p-12 md:p-32 md:mx-64">
-        <h1 className="font-bold text-5xl m-8 md:my-16 text-center">นโยบายความเป็นส่วนตัวสำหรับลูกค้า</h1>
-        <p>ทีมนักพัฒนาในทีมประธานรุ่น 20 คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณ โดยนโยบายความเป็นส่วนตัวฉบับนี้ได้อธิบายแนวปฏิบัติเกี่ยวกับการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคล รวมถึงสิทธิต่าง ๆ ของเจ้าของข้อมูลส่วนบุคคล ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล</p>
+    <section id="THA" lang="th">
+        <h2 className="mb-6 mt-12 text-2xl font-semibold leading-tight md:text-3xl">นโยบายความเป็นส่วนตัวสำหรับลูกค้า</h2>
+        <p>Dev Club คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณ โดยนโยบายความเป็นส่วนตัวฉบับนี้ได้อธิบายแนวปฏิบัติเกี่ยวกับการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคล รวมถึงสิทธิต่าง ๆ ของเจ้าของข้อมูลส่วนบุคคล ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล</p>
 
-        <h2 className="font-bold text-2xl my-6">การเก็บรวบรวมข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">การเก็บรวบรวมข้อมูลส่วนบุคคล</h3>
         <p>
         เราจะเก็บรวบรวมข้อมูลส่วนบุคคลที่ได้รับโดยตรงจากคุณผ่านช่องทาง ดังต่อไปนี้
-        </p><UnorderedList className='p-6'>
-  <ListItem>อีเมล</ListItem>
-  <ListItem>รหัสนักศึกษา</ListItem>
-</UnorderedList>
+        </p><ul className="list-disc py-4 pl-6">
+  <li>อีเมล</li>
+  <li>รหัสนักศึกษา</li>
+</ul>
         <p></p>
 
-        <h2 className="font-bold text-2xl  my-6">ประเภทข้อมูลส่วนบุคคลที่เก็บรวบรวม</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">ประเภทข้อมูลส่วนบุคคลที่เก็บรวบรวม</h3>
         <p><b>ข้อมูลการติดต่อ</b> เช่น ที่อยู่ หมายเลขโทรศัพท์ อีเมล เป็นต้น</p>
 
-        <h2 className="font-bold text-2xl my-6">ผู้เยาว์</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">ผู้เยาว์</h3>
         <p>หากคุณมีอายุต่ำกว่า 20 ปีหรือมีข้อจำกัดความสามารถตามกฎหมาย เราอาจเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณ เราอาจจำเป็นต้องให้พ่อแม่หรือผู้ปกครองของคุณให้ความยินยอมหรือที่กฎหมายอนุญาตให้ทำได้ หากเราทราบว่ามีการเก็บรวบรวมข้อมูลส่วนบุคคลจากผู้เยาว์โดยไม่ได้รับความยินยอมจากพ่อแม่หรือผู้ปกครอง เราจะดำเนินการลบข้อมูลนั้นออกจากเซิร์ฟเวอร์ของเรา</p>
 
-        <h2 className="font-bold text-2xl my-6">วิธีการเก็บรักษาข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">วิธีการเก็บรักษาข้อมูลส่วนบุคคล</h3>
         <p>เราจะเก็บรักษาข้อมูลส่วนบุคคลของคุณในรูปแบบเอกสารและรูปแบบอิเล็กทรอนิกส์</p>
         <p>เราเก็บรักษาข้อมูลส่วนบุคคลของคุณ ดังต่อไปนี้</p>
-        <UnorderedList className='p-6'>
-  <ListItem>ผู้ให้บริการเซิร์ฟเวอร์ในต่างประเทศ</ListItem>
-</UnorderedList>
+        <ul className="list-disc py-4 pl-6">
+  <li>ผู้ให้บริการเซิร์ฟเวอร์ในต่างประเทศ</li>
+</ul>
 
-        <h2 className="font-bold text-2xl my-6">การประมวลผลข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">การประมวลผลข้อมูลส่วนบุคคล</h3>
         <p>เราจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณเพื่อวัตถุประสงค์ดังต่อไปนี้</p>
-        <UnorderedList className='p-6'>
-          <ListItem>เพื่อสร้างและจัดการบัญชีผู้ใช้งาน</ListItem>
-          <ListItem>เพื่อการบริหารจัดการภายในบริษัท</ListItem>
-          <ListItem>เพื่อการบริการหลังการขาย</ListItem>
-          <ListItem>เพื่อปฏิบัติตามข้อตกลงและเงื่อนไข (Terms and Conditions)</ListItem>
-          <ListItem>เพื่อปฏิบัติตามกฎหมายและกฎระเบียบของหน่วยงานราชการ</ListItem>
-        </UnorderedList>
+        <ul className="list-disc py-4 pl-6">
+          <li>เพื่อสร้างและจัดการบัญชีผู้ใช้งาน</li>
+          <li>เพื่อการบริหารจัดการภายในบริษัท</li>
+          <li>เพื่อการบริการหลังการขาย</li>
+          <li>เพื่อปฏิบัติตามข้อตกลงและเงื่อนไข (Terms and Conditions)</li>
+          <li>เพื่อปฏิบัติตามกฎหมายและกฎระเบียบของหน่วยงานราชการ</li>
+        </ul>
 
-        <h2 className="font-bold text-2xl my-6">การเปิดเผยข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">การเปิดเผยข้อมูลส่วนบุคคล</h3>
         <p>เราอาจเปิดเผยข้อมูลส่วนบุคคลของคุณให้แก่ผู้อื่นภายใต้ความยินยอมของคุณหรือที่กฎหมายอนุญาตให้เปิดเผยได้ ดังต่อไปนี้</p>
 
         <p className='pt-6'><b>การบริหารจัดการภายในองค์กร</b></p>
         <p>เราอาจเปิดเผยข้อมูลส่วนบุคคลของคุณภายในบริษัทเท่าที่จำเป็นเพื่อปรับปรุงและพัฒนาสินค้าหรือบริการของเรา เราอาจรวบรวมข้อมูลภายในสำหรับสินค้าหรือบริการต่าง ๆ ภายใต้นโยบายนี้เพื่อประโยชน์ของคุณและผู้อื่นมากขึ้น</p>
 
-        <h2 className="font-bold text-2xl my-6">ระยะเวลาจัดเก็บข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">ระยะเวลาจัดเก็บข้อมูลส่วนบุคคล</h3>
         <p>เราจะเก็บรักษาข้อมูลส่วนบุคคลของคุณไว้ตามระยะเวลาที่จำเป็นในระหว่างที่คุณเป็นลูกค้าหรือมีความสัมพันธ์อยู่กับเราหรือตลอดระยะเวลาที่จำเป็นเพื่อให้บรรลุวัตถุประสงค์ที่เกี่ยวข้องกับนโยบายฉบับนี้ ซึ่งอาจจำเป็นต้องเก็บรักษาไว้ต่อไปภายหลังจากนั้น หากมีกฎหมายกำหนดไว้ เราจะลบ ทำลาย หรือทำให้เป็นข้อมูลที่ไม่สามารถระบุตัวตนของคุณได้ เมื่อหมดความจำเป็นหรือสิ้นสุดระยะเวลาดังกล่าว</p>
 
-        <h2 className="font-bold text-2xl my-6">สิทธิของเจ้าของข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">สิทธิของเจ้าของข้อมูลส่วนบุคคล</h3>
         <p>ภายใต้กฎหมายคุ้มครองข้อมูลส่วนบุคคล  คุณมีสิทธิในการดำเนินการดังต่อไปนี้</p>
 
         <p className='pt-6'><b>สิทธิขอถอนความยินยอม (right to withdraw consent)</b> หากคุณได้ให้ความยินยอม เราจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณ ไม่ว่าจะเป็นความยินยอมที่คุณให้ไว้ก่อนวันที่กฎหมายคุ้มครองข้อมูลส่วนบุคคลใช้บังคับหรือหลังจากนั้น คุณมีสิทธิที่จะถอนความยินยอมเมื่อใดก็ได้ตลอดเวลา</p>
@@ -204,42 +198,42 @@ export default function privacy() {
         <p className='pt-6'>คุณสามารถใช้สิทธิของคุณในฐานะเจ้าของข้อมูลส่วนบุคคลข้างต้นได้ โดยติดต่อมาที่เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของเราตามรายละเอียดท้ายนโยบายนี้ เราจะแจ้งผลการดำเนินการภายในระยะเวลา 30 วัน นับแต่วันที่เราได้รับคำขอใช้สิทธิจากคุณ ตามแบบฟอร์มหรือวิธีการที่เรากำหนด ทั้งนี้ หากเราปฏิเสธคำขอเราจะแจ้งเหตุผลของการปฏิเสธให้คุณทราบผ่านช่องทางต่าง ๆ เช่น ข้อความ (SMS) อีเมล โทรศัพท์ จดหมาย เป็นต้น</p>
 
 
-        <h2 className="font-bold text-2xl my-6">การโฆษณาและการตลาด</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">การโฆษณาและการตลาด</h3>
 
         <p>เราอาจส่งข้อมูลหรือจดหมายข่าวไปยังอีเมลของคุณ โดยมีวัตถุประสงค์เพื่อเสนอสิ่งที่น่าสนกับคุณ หากคุณไม่ต้องการรับการติดต่อสื่อสารจากเราผ่านทางอีเมลอีกต่อไป คุณสามารถติดต่อมายังอีเมลของเราได้</p>
 
-        <h2 className="font-bold text-2xl my-6">เทคโนโลยีติดตามตัวบุคคล (Cookies)</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">เทคโนโลยีติดตามตัวบุคคล (Cookies)</h3>
         <p>เพื่อเพิ่มประสบการณ์การใช้งานของคุณให้สมบูรณ์และมีประสิทธิภาพมากขึ้น เราใช้คุกกี้ (Cookies)หรือเทคโนโลยีที่คล้ายคลึงกัน เพื่อพัฒนาการเข้าถึงสินค้าหรือบริการ โฆษณาที่เหมาะสม และติดตามการใช้งานของคุณ เราใช้คุกกี้เพื่อระบุและติดตามผู้ใช้งานเว็บไซต์และการเข้าถึงเว็บไซต์ของเรา หากคุณไม่ต้องการให้มีคุกกี้ไว้ในคอมพิวเตอร์ของคุณ คุณสามารถตั้งค่าบราวเซอร์เพื่อปฏิเสธคุกกี้ก่อนที่จะใช้เว็บไซต์ของเราได้</p>
 
-        <h2 className="font-bold text-2xl my-6">การรักษาความมั่งคงปลอดภัยของข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">การรักษาความมั่งคงปลอดภัยของข้อมูลส่วนบุคคล</h3>
         <p>เราจะรักษาความมั่นคงปลอดภัยของข้อมูลส่วนบุคคลของคุณไว้ตามหลักการ การรักษาความลับ (confidentiality) ความถูกต้องครบถ้วน (integrity) และสภาพพร้อมใช้งาน (availability) ทั้งนี้ เพื่อป้องกันการสูญหาย เข้าถึง ใช้ เปลี่ยนแปลง แก้ไข หรือเปิดเผย นอกจากนี้เราจะจัดให้มีมาตรการรักษาความมั่นคงปลอดภัยของข้อมูลส่วนบุคคล ซึ่งครอบคลุมถึงมาตรการป้องกันด้านการบริหารจัดการ (administrative safeguard) มาตรการป้องกันด้านเทคนิค (technical safeguard) และมาตรการป้องกันทางกายภาพ (physical safeguard) ในเรื่องการเข้าถึงหรือควบคุมการใช้งานข้อมูลส่วนบุคคล (access control)</p>
 
-        <h2 className="font-bold text-2xl my-6">การแจ้งเหตุละเมิดข้อมูลส่วนบุคคล</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">การแจ้งเหตุละเมิดข้อมูลส่วนบุคคล</h3>
         <p>ในกรณีที่มีเหตุละเมิดข้อมูลส่วนบุคคลของคุณเกิดขึ้น เราจะแจ้งให้สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคลทราบโดยไม่ชักช้าภายใน 72 ชั่วโมง นับแต่ทราบเหตุเท่าที่สามารถกระทำได้ ในกรณีที่การละเมิดมีความเสี่ยงสูงที่จะมีผลกระทบต่อสิทธิและเสรีภาพของคุณ เราจะแจ้งการละเมิดให้คุณทราบพร้อมกับแนวทางการเยียวยาโดยไม่ชักช้าผ่านช่องทางต่าง ๆ เช่น  เว็บไซต์ ข้อความ (SMS) อีเมล โทรศัพท์ จดหมาย เป็นต้น</p>
 
-        <h2 className="font-bold text-2xl my-6">การแก้ไขเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">การแก้ไขเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h3>
         <p>เราอาจแก้ไขเปลี่ยนแปลงนโยบายนี้เป็นครั้งคราว โดยคุณสามารถทราบข้อกำหนดและเงื่อนไขนโยบายที่มีการแก้ไขเปลี่ยนแปลงนี้ได้ผ่านทางเว็บไซต์ของเรา</p>
         <p>นโยบายนี้แก้ไขล่าสุดและมีผลใช้บังคับตั้งแต่วันที่ 29 มิถุนายน 2566</p>
 
-        <h2 className="font-bold text-2xl my-6">นโยบายความเป็นส่วนตัวของเว็บไซต์อื่น</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">นโยบายความเป็นส่วนตัวของเว็บไซต์อื่น</h3>
         <p>นโยบายความเป็นส่วนตัวฉบับนี้ใช้สำหรับการเสนอสินค้า บริการ และการใช้งานบนเว็บไซต์สำหรับลูกค้าของเราเท่านั้น หากคุณเข้าชมเว็บไซต์อื่นแม้จะผ่านช่องทางเว็บไซต์ของเรา การคุ้มครองข้อมูลส่วนบุคคลต่าง ๆ จะเป็นไปตามนโยบายความเป็นส่วนตัวของเว็บไซต์นั้น ซึ่งเราไม่มีส่วนเกี่ยวข้องด้วย</p>
 
-        <h2 className="font-bold text-2xl my-6">รายละเอียดการติดต่อ</h2>
+        <h3 className="mb-3 mt-8 text-xl font-semibold leading-tight">รายละเอียดการติดต่อ</h3>
         <p>หากคุณต้องการสอบถามข้อมูลเกี่ยวกับนโยบายความเป็นส่วนตัวฉบับนี้ รวมถึงการขอใช้สิทธิต่าง ๆ คุณสามารถติดต่อเราหรือเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของเราได้ ดังนี้</p>
 
         <p className='pt-6'><b>ผู้ควบคุมข้อมูลส่วนบุคคล</b></p>
-        <p>ทีมนักพัฒนาในทีมประธานรุ่น 20 คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล</p>
+        <p>Dev Club คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล</p>
 
         <p>
         คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล 999 ถนนพุทธมณฑลสาย 4 ศาลายา พุทธมณฑล นครปฐม 73170
         </p>
 
         <p>อีเมล poonyawatt.klu@student.mahidol.ac.th</p>
-        <p>เว็บไซต์ https://ict21.ict.mahidol.ac.th</p>
+        <p>เว็บไซต์ <Link href="/" className="underline underline-offset-4">Dev Club ICT Mahidol</Link></p>
         <p>หมายเลขโทรศัพท์ 0881060571</p>
 
         <p className='pt-6'><b>เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล</b></p>
-        <p>ทีมนักพัฒนาในทีมประธานรุ่น 20 คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล</p>
+        <p>Dev Club คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล</p>
 
         <p>
         คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล 999 ถนนพุทธมณฑลสาย 4 ศาลายา พุทธมณฑล นครปฐม 73170
@@ -248,9 +242,9 @@ export default function privacy() {
         <p>อีเมล poonyawatt.klu@student.mahidol.ac.th</p>
         <p>หมายเลขโทรศัพท์ 0881060571</p>
 
+      </section>
       </div>
-      </div>
-    </>
+    </main>
   )
-  
+
   }

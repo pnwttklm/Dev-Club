@@ -1,3 +1,4 @@
+/*
 // import "server-only";
 
 import { Client } from "@notionhq/client";
@@ -42,3 +43,4 @@ export const getPageBySlug = cache((slug: string) => {
     })
     .then((res) => res.results[0] as PageObjectResponse | undefined);
 });
+*/
