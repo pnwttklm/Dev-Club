@@ -6,17 +6,23 @@ export default function Location() {
   return (
     <Box bg="black" color="white" p={{ base: 6, md: 10, lg: 16 }} mt="8">
       <SimpleGrid columns={{ base: 1, lg: 2 }} gap={{ base: 8, lg: 12 }} alignItems="center">
-        <div className="w-full overflow-hidden border border-white/20 bg-black">
+        <a
+          href="https://www.ict.mahidol.ac.th/en/contact-us/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full overflow-hidden border border-white/20 bg-black transition-opacity hover:opacity-90"
+          aria-label="Faculty of ICT Mahidol University Contact Us"
+        >
           <Image
-            src="/location-placeholder.svg"
-            width={1000}
-            height={1000}
-            alt="ICT Building"
+            src="/ICT-mahidol.jpg"
+            width={1280}
+            height={748}
+            alt="Faculty of ICT, Mahidol University"
             className="h-auto w-full object-cover"
           />
-        </div>
+        </a>
         <div className="flex flex-col items-start justify-center">
-          <p className="text-2xl sm:text-4xl lg:text-5xl font-normal leading-tight text-white break-words">
+          <p className="text-2xl sm:text-4xl lg:text-5xl font-normal leading-tight text-white wrap-break-word">
             Dev Club is currently located at room IT210
             <br />
             Faculty of ICT, Mahidol University
