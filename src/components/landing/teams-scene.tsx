@@ -13,6 +13,8 @@ export function TeamsScene({ children }: { children: ReactNode }) {
     const node = root.current!;
     const grid = node.querySelector<HTMLElement>('[data-teams-grid]')!;
     const cards = [...node.querySelectorAll<HTMLElement>('[data-team-card]')];
+    const heading = node.querySelector<HTMLElement>('h2')!;
+    const contents = cards.map(card => card.querySelector<HTMLElement>('[data-team-content]')!);
     let scene: gsap.Context | undefined;
     let timer: ReturnType<typeof setTimeout>;
     let signature = '';
@@ -22,6 +24,8 @@ export function TeamsScene({ children }: { children: ReactNode }) {
       delete node.dataset.sceneStart;
       delete node.dataset.sceneEnd;
       node.style.removeProperty('--team-deck-height');
+      node.style.removeProperty('--team-stage-height');
+      node.style.removeProperty('--team-stage-padding');
       cards.forEach(card => {
         card.dataset.teamFace = 'settled';
         card.dataset.teamRevealed = 'true';
@@ -34,7 +38,7 @@ export function TeamsScene({ children }: { children: ReactNode }) {
     if (!ready) return reset;
     // Offset dimensions ignore translations and detect copy growth even when
     // the equal-height grid itself has not yet grown.
-    const dimensions = () => [innerWidth, innerHeight, grid.offsetWidth, grid.offsetHeight,
+    const dimensions = () => [innerWidth, innerHeight, heading.offsetHeight, grid.offsetWidth, grid.offsetHeight,
       ...cards.flatMap(card => {
         const copy = card.querySelector<HTMLElement>('[data-team-copy]')!;
         return [copy.offsetWidth, copy.offsetHeight, card.offsetHeight];
@@ -51,17 +55,28 @@ export function TeamsScene({ children }: { children: ReactNode }) {
           const oneColumn = natural.every(rect => Math.abs(rect.left - natural[0].left) < 1);
           const oneRow = natural.every(rect => Math.abs(rect.top - natural[0].top) < 1);
           const tallest = Math.max(...natural.map(rect => rect.height));
-          const fits = tallest + parseFloat(getComputedStyle(grid).marginTop) + 12 <= innerHeight - clearance;
+          const frameHeight = heading.getBoundingClientRect().height + parseFloat(getComputedStyle(grid).marginTop) + tallest + 12;
+          const fits = frameHeight <= innerHeight - clearance;
+          // Center the visible heading/deck frame, not the tall final mobile
+          // column. Its remaining cards are read normally after the short pin.
+          const stagePadding = Math.max(0, (innerHeight - clearance - frameHeight) / 2);
+          const pinTop = clearance;
           const sameWidth = natural.every(rect => Math.abs(rect.width - natural[0].width) <= 1);
           const eligible = enabled && cards.length === 5 && (oneColumn || oneRow) && fits && sameWidth
             && parseFloat(getComputedStyle(document.documentElement).fontSize) < 32;
-          if (eligible) node.style.setProperty('--team-deck-height', `${tallest}px`);
+          if (eligible) {
+            node.style.setProperty('--team-deck-height', `${tallest}px`);
+            node.style.setProperty('--team-stage-height', `${innerHeight - clearance}px`);
+            node.style.setProperty('--team-stage-padding', `${stagePadding}px`);
+          }
           const slots = cards.map(card => card.getBoundingClientRect());
           const rootRect = node.getBoundingClientRect();
           let rootDocumentTop = rootRect.top + scrollY;
           const positions = slots.map(rect => ({ top: rect.top - rootRect.top, height: rect.height }));
-          const order = oneColumn ? [...cards.keys()].reverse() : [...cards.keys()];
-          const origin = slots[oneColumn ? 0 : 4];
+          // Outer slots first: later transfers never cross a settled face.
+          // Mobile retains farthest-first vertical dealing without x motion.
+          const order = oneColumn ? [...cards.keys()].reverse() : [0, 4, 1, 3, 2];
+          const origin = slots[oneColumn ? 0 : 2];
           const starts = cards.map((_, index) => ({ x: origin.left - slots[index].left, y: origin.top - slots[index].top + order.indexOf(index) * 3 }));
           let pin: ScrollTrigger | undefined;
           const coarse = matchMedia('(pointer: coarse)').matches;
@@ -73,7 +88,7 @@ export function TeamsScene({ children }: { children: ReactNode }) {
             if (!coarse) return;
             const progress = pin?.progress ?? 1;
             const rootTop = pin && scrollY >= pin.start && scrollY <= pin.end
-              ? clearance : rootDocumentTop + (pin && scrollY > pin.end ? pin.end - pin.start : 0) - scrollY;
+              ? pinTop : rootDocumentTop + (pin && scrollY > pin.end ? pin.end - pin.start : 0) - scrollY;
             const center = (innerHeight + clearance - 16) / 2;
             let candidate: HTMLElement | undefined;
             let distance = Infinity;
@@ -91,6 +106,9 @@ export function TeamsScene({ children }: { children: ReactNode }) {
           };
           if (eligible) {
             gsap.set(cards, { x: index => starts[index].x, y: index => starts[index].y, force3D: false });
+            // Fade the face content over an opaque surface. Fading the article
+            // itself would reveal rear copy; 90% retains AA text contrast.
+            gsap.set(contents, { opacity: .9 });
             let previous = -1;
             const face = (progress: number) => {
               const active = progress >= .9 ? 5 : Math.min(4, Math.floor((progress + 1e-7) / .18));
@@ -108,20 +126,23 @@ export function TeamsScene({ children }: { children: ReactNode }) {
             const timeline = gsap.timeline({
               defaults: { ease: 'none', force3D: false },
               scrollTrigger: {
-                id: 'landing-teams', trigger: node, pin: node,
-                start: () => `top ${getNavigationClearance()}`,
+                id: 'landing-teams', refreshPriority: 1, trigger: node, pin: node,
+                start: () => `top ${pinTop}`,
                 end: () => `+=${innerHeight * (oneColumn ? .8 : 1)}`,
                 scrub: true, anticipatePin: 1,
                 onUpdate: self => face(self.progress),
                 onRefresh: self => {
-                  rootDocumentTop = self.start + clearance;
+                  rootDocumentTop = self.start + pinTop;
                   node.dataset.sceneStart = String(self.start);
                   node.dataset.sceneEnd = String(self.end);
                   face(self.progress);
                 },
               },
             });
-            order.forEach((index, depth) => timeline.to(cards[index], { x: 0, y: 0, duration: .18 }, depth * .18));
+            order.forEach((index, depth) => {
+              timeline.to(cards[index], { x: 0, y: 0, duration: .18 }, depth * .18);
+              timeline.to(contents[index], { opacity: 1, duration: .18, ease: 'sine.out' }, depth * .18);
+            });
             timeline.to({}, { duration: .1 });
             pin = timeline.scrollTrigger;
             face(pin?.progress ?? 0);
@@ -156,6 +177,7 @@ export function TeamsScene({ children }: { children: ReactNode }) {
     };
     const observer = new ResizeObserver(refit);
     observer.observe(grid);
+    observer.observe(heading);
     cards.forEach(card => {
       observer.observe(card);
       observer.observe(card.querySelector('[data-team-copy]')!);

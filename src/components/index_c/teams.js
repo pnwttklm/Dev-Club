@@ -4,15 +4,17 @@ import { TeamsScene } from '../landing/teams-scene';
 
 export default function Teams() {
   return (
-    <TeamsScene><SimpleGrid data-teams-grid columns={{ base: 1, md: 2, lg: 3, "2xl": 5 }} gap="6" mt="10">
+    <TeamsScene><h2>Teams</h2><SimpleGrid data-teams-grid columns={{ base: 1, md: 2, lg: 3, "2xl": 5 }} gap="6" mt="10">
       {qElement.map(team => (
         <Box as="article" key={team.name} data-team-card={team.name} style={{ '--team-accent': `var(--chakra-colors-${team.color.replace('.', '-')})` }} bg="bg.inverted" color="fg.inverted" p="6" minW="0">
           <div data-team-back aria-hidden="true" />
+          <div data-team-content>
           <Image src={team.imgSrc} width={1000} height={1000} alt="" className="team-illustration w-full object-contain" />
           <div data-team-copy>
           <Box as="h3" bg={team.color} color={team.foreground || "white"} fontSize="3xl" lineHeight="1.25" fontWeight="400" mt="6" mb="4">{team.name}</Box>
           <p className="text-xl leading-relaxed">{team.des}</p>
           <p className="mt-4 text-xl leading-relaxed">Tools: {team.tools}</p>
+          </div>
           </div>
         </Box>
       ))}

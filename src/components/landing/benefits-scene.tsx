@@ -62,7 +62,9 @@ export function BenefitsScene({ children }: { children: ReactNode }) {
       const timeline = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
-          id: 'landing-benefits', trigger: node, pin: node, start: () => `top ${getNavigationClearance()}`,
+          // Refit can recreate this trigger after Teams. Always measure its
+          // upstream pin spacing first, regardless of creation order.
+          id: 'landing-benefits', refreshPriority: 2, trigger: node, pin: node, start: () => `top ${getNavigationClearance()}`,
           end: () => `+=${(innerHeight - getNavigationClearance()) * (desktop ? 1.1 : 0.85)}`,
           scrub: true, invalidateOnRefresh: true, anticipatePin: 1,
           onUpdate: self => update(self.progress),

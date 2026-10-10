@@ -1,13 +1,17 @@
 type ScrollHandler = (target: HTMLElement, immediate: boolean) => Promise<void>;
 let landingScroll: ScrollHandler | undefined;
+let synchronizeLandingScroll: (() => void) | undefined;
 
 export function getNavigationClearance(): number {
   return (document.querySelector('nav')?.getBoundingClientRect().height ?? 80) + 16;
 }
 
-export function registerLandingScroll(handler: ScrollHandler): () => void {
+export function registerLandingScroll(handler: ScrollHandler, synchronize?: () => void): () => void {
   landingScroll = handler;
-  return () => { if (landingScroll === handler) landingScroll = undefined; };
+  synchronizeLandingScroll = synchronize;
+  return () => {
+    if (landingScroll === handler) { landingScroll = undefined; synchronizeLandingScroll = undefined; }
+  };
 }
 
 // Preference/layout changes may remove pin spacing above the current view.
@@ -27,7 +31,12 @@ export function preserveViewportPosition(change: () => void): void {
   const top = target?.getBoundingClientRect().top;
   change();
   if (target && top !== undefined) requestAnimationFrame(() => {
-    if (target.isConnected) window.scrollTo({ top: scrollY + target.getBoundingClientRect().top - top, behavior: 'instant' });
+    if (target.isConnected) {
+      window.scrollTo({ top: scrollY + target.getBoundingClientRect().top - top, behavior: 'instant' });
+      // A queued refresh may run before the browser dispatches this scroll
+      // event. Synchronize its cache now so it cannot restore the old position.
+      synchronizeLandingScroll?.();
+    }
   });
 }
 

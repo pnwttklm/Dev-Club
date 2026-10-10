@@ -38,8 +38,9 @@ main section[id] { scroll-margin-top: 96px; }
 [data-benefit-spotlight="true"]::before { opacity: 1; }
 [data-benefits-mode="deck"] [data-benefit-card] { box-shadow: 0 0 0 1px var(--chakra-colors-border); }
 [data-team-card] { position: relative; }
-.teams-scene { position: relative; isolation: isolate; display: flow-root; }
+.teams-scene { position: relative; isolation: isolate; display: flow-root; background: var(--chakra-colors-bg); min-height: var(--team-stage-height, auto); padding-top: var(--team-stage-padding, 0px); }
 [data-team-copy] { display: flow-root; }
+[data-team-content] { display: flow-root; }
 .team-illustration { height: 120px; }
 [data-team-card] { min-height: var(--team-deck-height, auto); }
 [data-team-back] { display: none; position: absolute; inset: 0; z-index: 2; background: var(--chakra-colors-bg-inverted); border: 2px solid var(--team-accent); pointer-events: none; }
