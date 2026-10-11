@@ -1,27 +1,50 @@
 import Image from "next/image";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { TeamsScene } from '../landing/teams-scene';
 
+const cardStyle = {
+  bg: "bg.inverted", color: "fg.inverted", p: "6", minW: "0",
+  borderRadius: "16px", border: "2px solid var(--team-accent)",
+};
+const accent = team => ({ '--team-accent': `var(--chakra-colors-${team.color.replace('.', '-')})` });
+
+function TeamContent({ team }) {
+  return <div data-team-content>
+    <Image src={team.imgSrc} width={1000} height={1000} alt="" className="team-illustration w-full object-contain" />
+    <div data-team-copy>
+      <Box as="h3" bg={team.color} color={team.foreground || "white"} fontWeight="400">{team.name}</Box>
+      <p>{team.des}</p>
+      <p>Tools: {team.tools}</p>
+    </div>
+  </div>;
+}
+
 export default function Teams() {
-  return (
-    <TeamsScene><h2>Teams</h2><SimpleGrid data-teams-grid columns={{ base: 1, md: 2, lg: 3, "2xl": 5 }} gridAutoRows="1fr" gap="6" mt="10">
-      {qElement.map(team => (
-        <Box as="article" key={team.name} data-team-card={team.name} style={{ '--team-accent': `var(--chakra-colors-${team.color.replace('.', '-')})` }} bg="bg.inverted" color="fg.inverted" p="6" minW="0" borderRadius="16px" border="2px solid var(--team-accent)">
-          <div data-team-back aria-hidden="true">
-            <div data-team-back-art><Image src="/logo_ww.svg" width={160} height={75} loading="eager" alt="" /><span>{team.name}</span></div>
-          </div>
-          <div data-team-content>
-          <Image src={team.imgSrc} width={1000} height={1000} alt="" className="team-illustration w-full object-contain" />
-          <div data-team-copy>
-          <Box as="h3" bg={team.color} color={team.foreground || "white"} fontWeight="400">{team.name}</Box>
-          <p>{team.des}</p>
-          <p>Tools: {team.tools}</p>
-          </div>
-          </div>
+  return <TeamsScene>
+    <h2 id="teams-heading">Teams</h2>
+    <div data-teams-grid role="region" aria-labelledby="teams-heading" data-lenis-prevent>
+      {qElement.map(team => <div key={team.name} data-team-slot style={accent(team)}>
+        <Box as="article" data-team-card={team.name} {...cardStyle}>
+          <TeamContent team={team} />
         </Box>
-      ))}
-    </SimpleGrid></TeamsScene>
-  );
+        <div data-team-placeholder aria-hidden="true">
+          <div data-team-back-art>
+            <Image src="/logo_ww.svg" width={160} height={75} loading="eager" alt="" />
+            <span>{team.name}</span>
+          </div>
+        </div>
+      </div>)}
+    </div>
+    <div data-team-presentation-layer aria-hidden="true">
+      {qElement.map(team => <Box key={team.name} data-team-presentation={team.name} className="team-presentation" style={accent(team)} {...cardStyle} bg="transparent" borderColor="transparent">
+        <div data-team-presentation-frame />
+        <TeamContent team={team} />
+      </Box>)}
+    </div>
+    <div data-team-controls role="group" aria-label="Choose a team">
+      {qElement.map((team, index) => <button key={team.name} type="button" data-team-dot={index} aria-label={`Show ${team.name}`} aria-current={index === 0 ? "true" : "false"} style={accent(team)}><span /></button>)}
+    </div>
+  </TeamsScene>;
 }
 
   const qElement = [

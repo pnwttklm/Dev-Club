@@ -6,7 +6,7 @@ export const metadata = { title: "Privacy Policy | MUICT Dev Club" };
 export default function privacy() {
 
   return(
-    <main id="main-content" tabIndex={-1} className={`${documentFont.className} ${documentFont.variable} mx-auto max-w-[75ch] break-words px-6 py-12 text-base leading-7 text-black [&_p]:mb-4 [&_li]:mb-2`}>
+    <main id="main-content" tabIndex={-1} className={`${documentFont.className} ${documentFont.variable} mx-auto w-full min-w-0 max-w-[75ch] wrap-anywhere px-6 py-12 text-base leading-7 text-black [&_p]:mb-4 [&_li]:mb-2`}>
       <h1 className="mb-10 text-3xl font-semibold leading-tight md:text-4xl">Privacy Policy</h1>
 
     <div className="bg-white">

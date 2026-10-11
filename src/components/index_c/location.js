@@ -17,6 +17,7 @@ export default function Location() {
             src="/ICT-mahidol.jpg"
             width={1280}
             height={748}
+            sizes="(min-width: 1920px) 742px, (min-width: 1280px) calc((100vw - 432px) / 2), (min-width: 1024px) calc((100vw - 224px) / 2), (min-width: 768px) calc(100vw - 130px), calc(100vw - 98px)"
             alt="Faculty of ICT, Mahidol University"
             className="h-auto w-full object-cover"
           />

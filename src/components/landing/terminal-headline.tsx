@@ -28,35 +28,40 @@ export function TerminalHeadline({ sentence, response }: { sentence: string; res
     const first = node.querySelectorAll('[data-terminal-sentence] [data-terminal-character]');
     const second = node.querySelectorAll('[data-terminal-response] [data-terminal-character]');
     const cursor = node.querySelector<HTMLElement>('[data-terminal-cursor]');
+    const positions = new Map<HTMLElement, { x: number; y: number }>();
+    let start = { x: 0, y: 0 };
+    let last: HTMLElement | undefined;
+    let geometry = '';
+    const move = cursor ? gsap.quickSetter(cursor, 'css') : undefined;
     const positionCursor = (char?: HTMLElement) => {
-      if (!cursor) return;
+      last = char;
+      const position = char ? positions.get(char) : start;
+      if (position) move?.({ ...position, force3D: true });
+    };
+    const measure = () => {
       const rootRect = node.getBoundingClientRect();
-      if (!char) {
-        const firstChar = first[0] as HTMLElement | undefined;
-        if (firstChar) {
-          const r = firstChar.getBoundingClientRect();
-          cursor.style.left = `${r.left - rootRect.left}px`;
-          cursor.style.top = `${r.top - rootRect.top}px`;
-        }
-        return;
-      }
-      const r = char.getBoundingClientRect();
-      cursor.style.left = `${r.right - rootRect.left}px`;
-      cursor.style.top = `${r.top - rootRect.top}px`;
+      const next = `${rootRect.width},${rootRect.height}`;
+      if (next === geometry) return;
+      geometry = next;
+      [...first, ...second].forEach((element, index) => {
+        const r = element.getBoundingClientRect();
+        positions.set(element as HTMLElement, { x: r.right - rootRect.left, y: r.top - rootRect.top });
+        if (index === 0) start = { x: r.left - rootRect.left, y: r.top - rootRect.top };
+      });
+      positionCursor(last);
     };
     if (!enabled || completed.current) {
       completed.current = true;
       gsap.set([...first, ...second], { visibility: 'visible' });
-      if (cursor) {
-        cursor.style.removeProperty('left');
-        cursor.style.removeProperty('top');
-      }
       setState(enabled ? 'complete' : 'static');
       return;
     }
     setState('typing');
     gsap.set([...first, ...second], { visibility: 'hidden' });
-    positionCursor();
+    if (cursor) gsap.set(cursor, { x: 0, y: 0, force3D: true });
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
     const reveal = (characters: NodeListOf<Element>, duration: number) => {
       const progress = { count: 0 };
       let shown = 0;
@@ -65,27 +70,22 @@ export function TerminalHeadline({ sentence, response }: { sentence: string; res
         for (; shown < count; shown++) {
           const el = characters[shown] as HTMLElement;
           el.style.visibility = 'visible';
-          positionCursor(el);
         }
+        if (count) positionCursor(characters[count - 1] as HTMLElement);
       } } };
     };
     const main = reveal(first, 2.4), reply = reveal(second, 0.6);
     const finish = () => {
       completed.current = true;
+      observer.disconnect();
       setState('complete');
-      if (cursor) {
-        cursor.style.removeProperty('left');
-        cursor.style.removeProperty('top');
-      }
+      if (cursor) gsap.set(cursor, { clearProps: 'transform' });
     };
     const timeline = gsap.timeline({ onComplete: finish });
     timeline.to(main.progress, main.vars).to(reply.progress, reply.vars, '+=0.9');
     return () => {
       completed.current = true;
-      if (cursor) {
-        cursor.style.removeProperty('left');
-        cursor.style.removeProperty('top');
-      }
+      observer.disconnect();
     };
   }, { scope: root, dependencies: [enabled, ready], revertOnUpdate: true });
 
