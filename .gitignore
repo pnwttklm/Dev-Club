@@ -33,3 +33,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.agent
+.agents
+.codex
+.impeccable
+.claude
+agent/
+skills-lock.json
+PRODUCT.md
+DESIGN.md
+AGENTS.md
+docs/*
+.superpowers/*
+tests/*
+tests/
+test-results/
+playwright-report/
+playwright*.config.ts
+reports/
+.next-motion
+test

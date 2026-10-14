@@ -1,47 +1,48 @@
-'use client'
-import Image from 'next/image';
-import { Box, Link, SimpleGrid } from '@chakra-ui/react';
+import Image from "next/image";
+import { SimpleGrid } from "@chakra-ui/react";
+import { BenefitsScene } from '../landing/benefits-scene';
 
-
-export default function whyUs() {
-
-    return (
-      <>
-      <div className="grid grid-flow-col auto-cols-ma gap-100 lg:p-32 p-6">
-        <SimpleGrid columns={[1, 1, 3]} spacingX='40px' spacingY='20px'>
-        {qElement.map((qE, index) => (
-            <div className=' p-6' key={index}>
-                <Image src={qE.imgSrc} width={500} height={500} alt='banner' className='h-[300px]'/>
-                <h1 className={`text-black text-4xl text-left pt-6 pb-3`}>
-                {qE.name.split('\n').map((line, i) => (
-                  <div key={i}>{line}</div>
-                ))}
-              </h1>
-                <h1 className={`text-black text-xl text-left mt-6`}>{qE.des}</h1>
-            </div>
-        ))}
-        </SimpleGrid>
-      </div>
-      </>
-      
-    );
-  }
+export default function WhyUs() {
+  return (
+    <BenefitsScene><h2>Why Us?</h2><SimpleGrid
+      data-benefits-grid columns={{ base: 1, md: 2, lg: 3 }}
+      w="full" maxW="88rem" mx="auto" gap="10" mt="10"
+      css={{ '& > [data-benefit-card]:last-child': {
+        gridColumn: { mdOnly: '1 / -1' },
+        width: { mdOnly: 'calc((100% - var(--chakra-spacing-10)) / 2)' },
+        justifySelf: { mdOnly: 'center' },
+      } }}
+    >
+      {qElement.map(benefit => (
+        <article key={benefit.name} data-benefit-card className="p-4 lg:p-6">
+          <Image src={benefit.imgSrc} width={500} height={500} alt="" className="h-[280px] lg:h-[320px] w-full object-contain" />
+          <h3 className="mt-8 text-3xl lg:text-4xl leading-tight font-normal text-left">
+            {benefit.name.split('\n').map((line, i) => (
+              <span key={i} className="block">{line}</span>
+            ))}
+          </h3>
+          <p className="mt-6 text-lg lg:text-xl leading-relaxed text-left">{benefit.des}</p>
+        </article>
+      ))}
+    </SimpleGrid></BenefitsScene>
+  );
+}
 
   const qElement = [
     {
       name: 'ACADEMIC \nGROWTH',
       imgSrc: '/whyUs/ag.svg',
-      des: 'Dev Club often explore topics and technologies that may not be covered in your regular coursework. This can broaden your knowledge and give you a more well-rounded education.',
+      des: 'MUICT Dev Club often explores topics and technologies that may not be covered in your regular coursework. This can broaden your knowledge and give you a more well-rounded education.',
     },
     {
         name: 'EXPANDED \nCOMMUNITY',
         imgSrc: '/whyUs/ec.svg',
-        des: 'Working with peers in Dev Club setting can improve your teamwork and communication skills. Collaboration is an essential skill in both academia and the professional world.',
+        des: 'Working with peers in MUICT Dev Club setting can improve your teamwork and communication skills. Collaboration is an essential skill in both academia and the professional world.',
       },
       {
         name: 'ENHANCED \nEXPERIENCE',
         imgSrc: '/whyUs/ee.svg',
-        des: 'Being part of a Dev Club often involves working on real projects and practical coding tasks. This hands-on experience can deepen your understanding of programming languages and concepts.',
+        des: 'Being part of MUICT Dev Club often involves working on real projects and practical coding tasks. This hands-on experience can deepen your understanding of programming languages and concepts.',
       },
       
 ]

@@ -1,3 +1,4 @@
+/*
 'use client'
 import Image from "next/image";
 import {
@@ -50,3 +51,4 @@ export function Post(props: PostProps) {
     </>
   );
 }
+*/
