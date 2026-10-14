@@ -1,13 +1,5 @@
-"use client"
-import dynamic from "next/dynamic";
-import React from "react";
+import { redirect } from "next/navigation";
 
-// const qC = dynamic(() => import('../../pages/Index'))
-
-export default function Home() {
-  return (
-    <>
-      {/* <qC/> */}
-    </>
-    )
-  }
+export default function Page() {
+  redirect("/#faqs");
+}
