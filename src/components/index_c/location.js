@@ -14,7 +14,7 @@ export default function Location() {
           aria-label="Faculty of ICT Mahidol University Contact Us"
         >
           <Image
-            src="/ICT-mahidol.jpg"
+            src="/ICT-mahidol.webp"
             width={1280}
             height={748}
             sizes="(min-width: 1920px) 742px, (min-width: 1280px) calc((100vw - 432px) / 2), (min-width: 1024px) calc((100vw - 224px) / 2), (min-width: 768px) calc(100vw - 130px), calc(100vw - 98px)"

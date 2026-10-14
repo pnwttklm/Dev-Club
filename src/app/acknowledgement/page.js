@@ -7,6 +7,7 @@ export default function Acknowledgement() {
       <h1 className="mb-8 text-3xl font-semibold leading-tight md:text-4xl">Acknowledgement</h1>
       <p className="mb-3 text-xl">This website has been developed by</p>
       <p className="text-xl">Poonyawatt Klumnaim - Faculty of ICT</p>
+      <p className="text-xl">Pakawat Sanboonsri - Faculty of ICT</p>
     </main>
   );
 }
